@@ -1,10 +1,9 @@
 /* COVID-19 Statistics API */
-
 // total
 var total = {
 	"async": true,
 	"crossDomain": true,
-	"url": "https://covid-19-statistics.p.rapidapi.com/reports/total?date=2020-04-07",
+	"url": "https://covid-19-statistics.p.rapidapi.com/reports/total",
 	"method": "GET",
 	"headers": {
 		"x-rapidapi-host": "covid-19-statistics.p.rapidapi.com",
@@ -24,7 +23,7 @@ var provinces = {
 	}
 }
 
-// reports - iso & name (country)
+// regions - iso & name (country)
 var regions = {
 	"async": true,
 	"crossDomain": true,
@@ -33,78 +32,49 @@ var regions = {
 	"headers": {
 		"x-rapidapi-host": "covid-19-statistics.p.rapidapi.com",
 		"x-rapidapi-key": "73403c6c67msha0632541172766bp194ccejsn820ec377a86a"
-    },
-    
+    },  
 }
 
-// reports
-// "url": "https://covid-19-statistics.p.rapidapi.com/reports?region_province=Alabama&iso=USA&region_name=US&city_name=Autauga&date=2020-04-16&q=US%20Alabama"
-var reports = {
-	"async": true,
-	"crossDomain": true,
-	"url": "https://covid-19-statistics.p.rapidapi.com/reports?iso=USA", // iso = USA
-	"method": "GET",
-	"headers": {
-		"x-rapidapi-host": "covid-19-statistics.p.rapidapi.com",
-		"x-rapidapi-key": "73403c6c67msha0632541172766bp194ccejsn820ec377a86a"
-	}
-}
-
-$.ajax(reports).done(function (response) {
-    console.log(response);
-    // console.log(response.data[0].confirmed);
-    var usaTotalConfirmed = 0;
-    for (var i = 0; i < response.data.length; i++) {
-        usaTotalConfirmed += response.data[i].confirmed;
-    }
-    console.log("USA total confirmed cases: " + usaTotalConfirmed);
-});
-
-var totalConfirmedCases = [];
-// Get total from each country
+// Get total of confirmed cases from each country and append it to total confirmed
 $.ajax(regions).done(function (regionsData) {
-    console.log(regionsData);
-    console.log(regionsData.data[0].iso);
+    var totalConfirmedCases = [];
     for (var i = 0; i < regionsData.data.length; i++) {
-        if (regionsData.data[i].iso !== 'undefined') {
-            var reports = {
-                "async": true,
-                "crossDomain": true,
-                "url": "https://covid-19-statistics.p.rapidapi.com/reports?iso=" + regionsData.data[i].iso, 
-                "method": "GET",
-                "headers": {
-                    "x-rapidapi-host": "covid-19-statistics.p.rapidapi.com",
-                    "x-rapidapi-key": "73403c6c67msha0632541172766bp194ccejsn820ec377a86a"
-                }
+        console.log(regionsData.data[i].iso);
+        var reports = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://covid-19-statistics.p.rapidapi.com/reports?iso=" + regionsData.data[i].iso, 
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": "covid-19-statistics.p.rapidapi.com",
+                "x-rapidapi-key": "73403c6c67msha0632541172766bp194ccejsn820ec377a86a"
+            },
+        }
+        $.ajax(reports).done(function (response) {
+            var total = 0;
+            for (var j = 0; j < response.data.length; j++) {
+                total += response.data[j].confirmed;
             }
-            $.ajax(reports).done(function (response) {
-                var total = 0;
-                for (var j = 0; j < response.data.length; j++) {
-                    total += response.data[j].confirmed;
-                }
-                try {
-                    console.log(response.data[0].region.iso + ": " + total);
-                } catch(err) {
-                    console.log("ooopps");
-                }
-            });
-        }       
-    }    
+            try {
+                var caseString = "";
+                caseString = total + ": " + response.data[0].region.iso;
+                totalConfirmedCases.push(caseString);
+                $("#total-cases-country").append("<span class='total-number-country'>" + formatNumber(total) + "</span> " + response.data[0].region.name + "</br>")
+            } catch(err) {
+                // do nothing
+            }
+        });   
+    }
+    
 });
 
+// Display world wide number of confirmed cases
+$.ajax(total).done(function (response) {
+    // console.log(response);
+    $(".total-cases-title").html("Total Confirmed <br><span class='total-number'>" + formatNumber(response.data.confirmed));
+});
 
-// $.ajax(total).done(function (response) {
-// 	console.log(response);
-// });
-
-
-
-// $.ajax(provinces).done(function (response) {
-//     console.log(response);
-// });
-
-
-
-// $.ajax(regions).done(function (response) {
-// 	console.log(response);
-// });
+// This function formats numbers with commas
+function formatNumber(num) {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+}
