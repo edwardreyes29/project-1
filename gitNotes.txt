@@ -10,6 +10,7 @@
 
 // delete branch locally
     git branch -d localBranchName
+Ls
 
 // delete branch remotely
     git push origin --delete
