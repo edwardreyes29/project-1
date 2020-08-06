@@ -1,0 +1,19 @@
+#total-cases-country {
+    /* background: red; */
+    overflow: auto;
+    height: 90%;
+}
+/* #total-cases-div {
+    background: blue;
+    width: 250px;
+    height: 300px;
+    border: 1px solid black;
+} */
+
+.total-number {
+    color: red;
+    font-weight: 700;
+}
+.total-number-country {
+    color: green;
+}
