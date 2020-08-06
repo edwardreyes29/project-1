@@ -1,9 +1,11 @@
 // create a branch
-
     git checkout -b my-branch
 
-// go back to master branch
+// go back to specific branch
     git checkout my-branch
+
+// go master branch
+    git checkout master
 
 // push my-branch
     git push origin my-branch
