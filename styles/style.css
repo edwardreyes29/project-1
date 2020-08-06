@@ -17,3 +17,8 @@
 .total-number-country {
     color: green;
 }
+
+#total-deaths {
+    overflow: auto;
+    height: 90%;
+}
