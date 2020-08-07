@@ -23,3 +23,134 @@
     overflow: auto;
     height: 90%;
 }
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    [class*="col-lrg-3 mr-4"] {
+        text-align: center;
+        margin-right: auto;
+        width:100%;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    [class*="row"] {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        width:100%;
+    }
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+    [class*="col"] {
+        text-align: center;
+        width:100%;
+    }
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+    [class*="card"] {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        width:100%;
+    }
+}
+
+
+
+
+
+
+@media (min-width: 768px) and (max-width: 991px) {
+    [class*="col-lrg-3 mr-4"] {
+        text-align: center;
+        margin-right: auto;
+      width: 100%;
+    }}
+
+    @media (min-width: 768px) and (max-width: 991px) {
+        [class*="row"] {
+            text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+      width: 100%;
+    }
+  }
+    
+  @media (min-width: 768px) and (max-width: 991px) {
+    [class*="col"] {
+        text-align: center;
+        width: 100%;
+}
+}
+@media (min-width: 768px) and (max-width: 991px) {
+    [class*="card"] {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+      width: 100%;
+}
+}
+
+
+
+@media only screen and (max-width: 812px) {
+    /* For mobile phones: */
+    [class*="col-lrg-3 mr-4"] {
+        text-align: center;
+        margin-right: auto;
+      width: 100%;
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="row"] {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+      width: 100%;
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="col"] {
+        text-align: center;
+        
+      width: 100%;
+    }
+  }
+
+  @media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="card"] {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+      width: 100%;
+    }
+  }
+  
+  @media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    [class*="row"] {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+      width: 100%;
+    }
+    .navbar{
+        width:100%
+    }
+    .form-inline {
+        width:98%;
+        margin: 0 auto;
+    }
+    #searchbar{
+        width:75%
+    }
+    #searchbutton{
+        width:20%
+    }
+  }
