@@ -45,7 +45,7 @@ $.ajax(locationAPI).done(function (response) {
 
         $(".modal-body").append("<div class='hotel-name'>" + "Hotel Name: " + response.data[0].name + "</div>")
         $(".modal-body").append("<div class='hotel-price'>" + "Price: " + response.data[0].price + "</div>")
-        $(".modal-body").append("<div class='hotel-rating'>" + response.data[0].rating + "</div>")
+        $(".modal-body").append("<div class='hotel-rating'>" + "Rating: " + response.data[0].rating + "</div>")
         $(".modal-body").append("<div class='hotel-numreviews'>" + "Number of Reviews: " + response.data[0].num_reviews + "</div>")
         $(".modal-body").append("<div class='hotel-location'>" + response.data[0].location_string + "</div>")
         $(".modal-body").append("<img class='hotel-photo img-fluid'  src= '" + response.data[0].photo.images.small.url + "'/>")
