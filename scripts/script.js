@@ -24,6 +24,7 @@ var provinces = {
     }
 }
 
+
 // regions - iso & name (country)
 var regions = {
     "async": true,
@@ -243,7 +244,7 @@ $.ajax(regions).done(function (regionsData) {
             var total = 0;
             for (var j = 0; j < response.data.length; j++) {
                 total += response.data[j].deaths;
-                console.log(response.data[j].deaths)
+                // console.log(response.data[j].deaths)
             }
             try {
                 var caseString = "";
