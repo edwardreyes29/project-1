@@ -157,7 +157,7 @@ var reports = {
 
 var totalWorldDeaths = 0;
 $.ajax(reports).done(function (response) {
-    console.log(response);
+  
     for (var i = 0; i < response.data.length; i++) {
         totalWorldDeaths += response.data[i].deaths;
     }
@@ -190,7 +190,7 @@ $("#click-usa").click(function () {
         }
         //Ajax call for US Cases
         $.ajax(settings).done(function (response) {
-            console.log(response.locations[0]);
+            
 
             var total = 0;
             for (var i = 0; i < response.locations.length; i++) {
@@ -219,7 +219,7 @@ $("#click-usa").click(function () {
 
         //Ajax call for US Deaths
         $.ajax(settings).done(function (response) {
-            console.log(response.locations[0]);
+         
 
             var total = 0;
             for (var i = 0; i < response.locations.length; i++) {
@@ -238,8 +238,8 @@ $("#click-usa").click(function () {
 
             async function asyncCall3() {
                 for (var i = 0; i < response.locations.length; i++) {
-
-                    $("#total-deaths").append("<span class='total-number-state'>" + response.locations[i].state + "</span> " + response.locations[i].latest.deaths + "</br>")
+                    $("#total-deaths").append(`<div class="input-search" data-toggle="modal" data-target="#exampleModal" data-state=${response.locations[i].state}><span class="total-number-state" >${response.locations[i].state}</span>${response.locations[i].latest.deaths}</div>`)
+                    // $("#total-deaths").append("<div class = 'input-search' value = "+ response.locations[i].state + "> <span class='total-number-state'>" + response.locations[i].state + "</span> " + response.locations[i].latest.deaths + "</div>")
                 }
             }
         });
