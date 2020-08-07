@@ -137,8 +137,6 @@ asyncCall()
 
 //Code for US Map is below this line - Nick
 
-//call for confirmed
-
 $("#click-usa").click(function() {
 
     $("#total-cases-country").empty();
