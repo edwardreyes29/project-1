@@ -36,19 +36,24 @@ $.ajax(locationAPI).done(function (response) {
     }
 
 
-
-
-
-
     
     $.ajax(HotelApi).done(function (response) {
         console.log(response.data[0].name);
+        console.log(response.data[0].price);
+        console.log(response.data[0].rating);
+        console.log(response.data[0]);
+
+        $(".modal-body").append("<div class='hotel-name'>" + "Hotel Name: " + response.data[0].name + "</div>")
+        $(".modal-body").append("<div class='hotel-price'>" + "Price: " + response.data[0].price + "</div>")
+        $(".modal-body").append("<div class='hotel-rating'>" + response.data[0].rating + "</div>")
+        $(".modal-body").append("<div class='hotel-numreviews'>" + "Number of Reviews: " + response.data[0].num_reviews + "</div>")
+        $(".modal-body").append("<div class='hotel-location'>" + response.data[0].location_string + "</div>")
+        $(".modal-body").append("<img class='hotel-photo img-fluid'  src= '" + response.data[0].photo.images.small.url + "'/>")
+
+
+       // $("#total-cases-country").append("<span class='total-number-state'>" + response.locations[i].state + "</span> " + response.locations[i].latest.confirmed + "</br>")
+
     });
-
-
-
-
-
 
 });
 
