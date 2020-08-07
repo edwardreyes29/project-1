@@ -48,6 +48,9 @@ function ready(error, dataGeo) {
         .enter()
         .append("path")
         .attr("fill", "#b8b8b8")
+        .attr("data-country", function(d) {
+            return d.properties.name;
+        })
         .attr("d", d3.geoPath()
             .projection(projection)
         )
