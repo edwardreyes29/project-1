@@ -1,6 +1,6 @@
 /* COVID-19 Statistics API */
 // total
-/* Commented out for example - Nick
+//Commented out for example - Nick
 var total = {
 	"async": true,
 	"crossDomain": true,
@@ -134,10 +134,19 @@ totalConfirmedDeaths.sort(function (a, b) {
     }
 
 asyncCall()
-*/
+
 //Code for US Map is below this line - Nick
 
 //call for confirmed
+
+$("#click-usa").click(function() {
+
+    $("#total-cases-country").empty();
+    $("#total-deaths").empty();
+    usMap();
+
+function usMap() {
+
 var settings = {
 	"async": true,
 	"crossDomain": true,
@@ -175,7 +184,8 @@ $.ajax(settings).done(function (response) {
     }
 
     });
-
+    
+    
 //Ajax call for US Deaths
     $.ajax(settings).done(function (response) {
         console.log(response.locations[0]);
@@ -202,8 +212,8 @@ $.ajax(settings).done(function (response) {
             }
         }
     });
-        
-
+}
+});
 
 //code for US Map is above this line
 //Old Code --- ignore everything below here
