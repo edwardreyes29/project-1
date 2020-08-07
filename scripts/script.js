@@ -1,5 +1,6 @@
 /* COVID-19 Statistics API */
 // total
+//Commented out for example - Nick
 var total = {
 	"async": true,
 	"crossDomain": true,
@@ -134,7 +135,86 @@ totalConfirmedDeaths.sort(function (a, b) {
 
 asyncCall()
 
+//Code for US Map is below this line - Nick
 
+$("#click-usa").click(function() {
+
+    $("#total-cases-country").empty();
+    $("#total-deaths").empty();
+    usMap();
+
+function usMap() {
+
+var settings = {
+	"async": true,
+	"crossDomain": true,
+	"url": "https://coronavirus-us-api.p.rapidapi.com/api/state/all?source=nyt",
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "coronavirus-us-api.p.rapidapi.com",
+		"x-rapidapi-key": "d60b77f798msh32257c07ec0e08ap1cb378jsn227b3dea201a"
+	}
+}
+//Ajax call for US Cases
+$.ajax(settings).done(function (response) {
+    console.log(response.locations[0]);
+    
+    var total = 0;
+    for (var i = 0; i < response.locations.length; i++) {
+         total += response.locations[i].latest.confirmed;
+         
+    }
+     try {
+         var caseObject = { name: response.location[0].latest.confirmed, countrytotal: total } //need to ask ed about this line
+             totalConfirmedDeaths.push(caseObject); //need to ask ed about this line
+             
+     } catch(err) {
+         // do nothing
+      } 
+
+      asyncCall2();
+
+    async function asyncCall2() {
+        for (var i = 0; i < response.locations.length; i++) {
+            
+             $("#total-cases-country").append("<span class='total-number-state'>" + response.locations[i].state + "</span> " + response.locations[i].latest.confirmed + "</br>")
+        }
+    }
+
+    });
+    
+    
+//Ajax call for US Deaths
+    $.ajax(settings).done(function (response) {
+        console.log(response.locations[0]);
+        
+        var total = 0;
+        for (var i = 0; i < response.locations.length; i++) {
+             total += response.locations[i].latest.deaths;
+             
+        }
+         try {
+             var caseObject = { name: response.location[0].latest.deaths, countrytotal: total } //need to ask ed about this line
+                 totalConfirmedDeaths.push(caseObject); //need to ask ed about this line
+                 
+         } catch(err) {
+             // do nothing
+          } 
+    
+          asyncCall3();
+    
+        async function asyncCall3() {
+            for (var i = 0; i < response.locations.length; i++) {
+                
+                 $("#total-deaths").append("<span class='total-number-state'>" + response.locations[i].state + "</span> " + response.locations[i].latest.deaths + "</br>")
+            }
+        }
+    });
+}
+});
+
+//code for US Map is above this line
+//Old Code --- ignore everything below here
 /*
 $.ajax(regions).done(function (regionsData) {
     var totalConfirmedCases = [];
