@@ -23,3 +23,8 @@
     overflow: auto;
     height: 90%;
 }
+
+.border-dark {
+    border-color: #343a40!important;
+    background: white;
+}
