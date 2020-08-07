@@ -82,10 +82,6 @@ function ready(error, dataGeo) {
         .html("Confirmed Cases Worldwide")
         .style("font-size", 14)
 
-    // --------------- //
-    // ADD LEGEND //
-    // --------------- //
-
     // Add legend: circles
     var valuesToShow = [10000, 100000, 1000000]
     var xCircle = 40
