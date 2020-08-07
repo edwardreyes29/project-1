@@ -1,19 +1,19 @@
 var reports = {
-	"async": false,
-	"crossDomain": true,
-	"url": "https://covid-19-statistics.p.rapidapi.com/reports",
-	"method": "GET",
-	"headers": {
-		"x-rapidapi-host": "covid-19-statistics.p.rapidapi.com",
-		"x-rapidapi-key": "73403c6c67msha0632541172766bp194ccejsn820ec377a86a"
-	}
+    "async": false,
+    "crossDomain": true,
+    "url": "https://covid-19-statistics.p.rapidapi.com/reports",
+    "method": "GET",
+    "headers": {
+        "x-rapidapi-host": "covid-19-statistics.p.rapidapi.com",
+        "x-rapidapi-key": "73403c6c67msha0632541172766bp194ccejsn820ec377a86a"
+    }
 }
 
 var jsonData = []; // to store lat, long, and confirmed cases for each province.
 $.ajax(reports).done(function (response) {
     for (var i = 0; i < response.data.length; i++) {
         // create a new object to push into the jsonData array
-        var newObject = {homelat: response.data[i].region.lat, homelon: response.data[i].region.long, n: response.data[i].confirmed};
+        var newObject = { homelat: response.data[i].region.lat, homelon: response.data[i].region.long, n: response.data[i].confirmed };
         jsonData.push(newObject);
     }
 });
@@ -36,7 +36,7 @@ d3.queue()
 function ready(error, dataGeo) {
     // Add a scale for bubble size
     var valueExtent = d3.extent(jsonData, function (d) { return +d.n; })
-    
+
     var size = d3.scaleSqrt()
         .domain(valueExtent)  // What's in the data
         .range([1, 50])  // Size in pixel
@@ -53,7 +53,7 @@ function ready(error, dataGeo) {
         )
         .style("stroke", "black")
         .style("opacity", .3)
-        
+
 
     // Add circles:
     svg
@@ -63,7 +63,7 @@ function ready(error, dataGeo) {
         .append("circle")
         .attr("cx", function (d) { return projection([+d.homelon, +d.homelat])[0] })
         .attr("cy", function (d) { return projection([+d.homelon, +d.homelat])[1] })
-        .attr("r", function (d) { return size(+d.n) / 4})
+        .attr("r", function (d) { return (size(+d.n) / 4 )})
         // .attr("r", 3)
         .style("fill", "red")
         .attr("stroke", function (d) { if (d.n > 2000) { return "black" } else { return "none" } })
@@ -81,12 +81,57 @@ function ready(error, dataGeo) {
         .attr("width", 90)
         .html("Confirmed Cases Worldwide")
         .style("font-size", 14)
+
+    // --------------- //
+    // ADD LEGEND //
+    // --------------- //
+
+    // Add legend: circles
+    var valuesToShow = [10000, 100000, 1000000]
+    var xCircle = 40
+    var xLabel = 90
+    svg
+        .selectAll("legend")
+        .data(valuesToShow)
+        .enter()
+        .append("circle")
+        .attr("cx", xCircle)
+        .attr("cy", function (d) { return height - (size(d) / 1.5)})
+        .attr("r", function (d) { return (size(d) / 4) })
+        .style("fill", "red")
+        .attr("stroke", "black")
+        .attr("fill-opacity", .4)
+
+    // Add legend: segments
+    svg
+        .selectAll("legend")
+        .data(valuesToShow)
+        .enter()
+        .append("line")
+        .attr('x1', function (d) { return xCircle + (size(d) / 4) })
+        .attr('x2', xLabel)
+        .attr('y1', function (d) { return height - (size(d) / 1.5)})
+        .attr('y2', function (d) { return height - (size(d) / 1.5)})
+        .attr('stroke', 'black')
+        .style('stroke-dasharray', ('2,2'))
+
+    // Add legend: labels
+    svg
+        .selectAll("legend")
+        .data(valuesToShow)
+        .enter()
+        .append("text")
+        .attr('x', xLabel)
+        .attr('y', function (d) { return height - (size(d) / 1.5)})
+        .text(function (d) { return formatNumber(d) })
+        .style("font-size", 10)
+        .attr('alignment-baseline', 'middle')
 }
 
 
 
 
-/*Code used to create csv file for plots*/ 
+/*Code used to create csv file for plots*/
 // var regions = {
 //     "async": false,
 //     "crossDomain": true,
@@ -101,7 +146,7 @@ function ready(error, dataGeo) {
 // $.ajax(regions).done(function(regionsData) {
 //     var countryPlots = [];
 //     for (var i = 0; i < regionsData.data.length; i++) {
-        
+
 //         var reports = {
 //             "async": false,
 //             "crossDomain": true,
@@ -142,3 +187,8 @@ function ready(error, dataGeo) {
 //     }
 //     console.log(countryPlots);
 // }
+
+// This function formats numbers with commas
+function formatNumber(num) {
+    return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+}
