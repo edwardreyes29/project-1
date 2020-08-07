@@ -1,11 +1,22 @@
-async function getReportsData(url) 
-{   
-    let response = await fetch(url);
-    let data = await response.json()
-    // console.log(data)
-    return data;
+var reports = {
+	"async": false,
+	"crossDomain": true,
+	"url": "https://covid-19-statistics.p.rapidapi.com/reports",
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "covid-19-statistics.p.rapidapi.com",
+		"x-rapidapi-key": "73403c6c67msha0632541172766bp194ccejsn820ec377a86a"
+	}
 }
 
+var jsonData = []; // to store lat, long, and confirmed cases for each province.
+$.ajax(reports).done(function (response) {
+    for (var i = 0; i < response.data.length; i++) {
+        // create a new object to push into the jsonData array
+        var newObject = {homelat: response.data[i].region.lat, homelon: response.data[i].region.long, n: response.data[i].confirmed};
+        jsonData.push(newObject);
+    }
+});
 
 // The svg
 var svg = d3.select("svg"),
@@ -20,21 +31,12 @@ var projection = d3.geoMercator()
 
 d3.queue()
     .defer(d3.json, "https://raw.githubusercontent.com/holtzy/D3-graph-gallery/master/DATA/world.geojson")  // World shape
-    .defer(d3.csv, "plots.csv") // Position of circles
     .await(ready);
 
-function ready(error, dataGeo, data) {
-
-    // Create a color scale
-    var allContinent = d3.map(data, function (d) { return (d.homecontinent) }).keys()
-    // console.log(allContinent)
-    var color = d3.scaleOrdinal()
-        .domain(allContinent)
-        .range(d3.schemePaired);
-
+function ready(error, dataGeo) {
     // Add a scale for bubble size
-    var valueExtent = d3.extent(data, function (d) { return +d.n; })
-    // console.log(valueExtent);
+    var valueExtent = d3.extent(jsonData, function (d) { return +d.n; })
+    
     var size = d3.scaleSqrt()
         .domain(valueExtent)  // What's in the data
         .range([1, 50])  // Size in pixel
@@ -56,7 +58,7 @@ function ready(error, dataGeo, data) {
     // Add circles:
     svg
         .selectAll("myCircles")
-        .data(data.sort(function (a, b) { return +b.n - +a.n }).filter(function (d, i) { return i < 1000 }))
+        .data(jsonData.sort(function (a, b) { return +b.n - +a.n }).filter(function (d, i) { return i < 1000 }))
         .enter()
         .append("circle")
         .attr("cx", function (d) { return projection([+d.homelon, +d.homelat])[0] })
@@ -140,4 +142,3 @@ function ready(error, dataGeo, data) {
 //     }
 //     console.log(countryPlots);
 // }
-// 

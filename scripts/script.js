@@ -73,7 +73,7 @@ $.ajax(regions).done(function (regionsData) {
 // Display world wide number of confirmed cases
 $.ajax(total).done(function (response) {
     // console.log(response);
-    $(".total-cases-title").html("Total Confirmed <br><span class='total-number'>" + formatNumber(response.data.confirmed));
+    $("#total-world-confirmed").html("Total Confirmed <br><span class='total-number'>" + formatNumber(response.data.confirmed));
 });
 
 // This function formats numbers with commas
@@ -142,6 +142,31 @@ async function asyncCall() {
 }
 
 asyncCall()
+
+// Show total world wide deaths
+var reports = {
+	"async": true,
+	"crossDomain": true,
+	"url": "https://covid-19-statistics.p.rapidapi.com/reports",
+	"method": "GET",
+	"headers": {
+		"x-rapidapi-host": "covid-19-statistics.p.rapidapi.com",
+		"x-rapidapi-key": "73403c6c67msha0632541172766bp194ccejsn820ec377a86a"
+	}
+}
+
+var totalWorldDeaths = 0;
+$.ajax(reports).done(function (response) {
+    console.log(response);
+    for (var i = 0; i < response.data.length; i++) {
+        totalWorldDeaths += response.data[i].deaths;
+    }
+    $("#total-world-deaths").html("Total Deaths <br><span class='total-number'>" + formatNumber(totalWorldDeaths));
+
+});
+
+
+
 
 //Code for US Map is below this line - Nick
 
