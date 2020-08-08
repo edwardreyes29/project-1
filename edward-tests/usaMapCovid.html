@@ -72,6 +72,7 @@
 
         
         $.getJSON("https://coronavirus-us-api.p.rapidapi.com/api/state/all?source=nyt&rapidapi-key=73403c6c67msha0632541172766bp194ccejsn820ec377a86a", function (data) {
+            var fillColor; // to hold fill color for hover
             // console.log(data);
             let covidData = data.locations;
             jsonData = []
@@ -101,7 +102,7 @@
                 // console.log(eduData)
                 console.log(covidData)
 
-                dataGeo = topojson.feature(data, data.objects.states).features; // change to counties
+                dataGeo = topojson.feature(data, data.objects.states).features;
     
                 // Draw the world map
                 svg.append("g")
@@ -112,23 +113,16 @@
                     .style("stroke", "white")
                     .attr('d', d3.geoPath()) // method that converts geometry into string given to svg 
                     .attr('class', 'county')
-                    // .attr("fill", "#b8b8b8")
+                    // Add a fill color based on the number of covid cases
                     .attr('fill', (dataGeoItem) => {
-                        let id = dataGeoItem.id // get county id
+                        let id = dataGeoItem.id // get state id
 
-                        let state = covidData.find((item) => {
-                            // console.log("id: " + id);
-                            // console.log("fips: " + item['fips'])
-                            if (item['fips'] === id) {
-                                console.log(true)
-                            } else {
-                                console.log(false)
-                            }
+                        let state = covidData.find((item) => { // like a for loop, searches each item to see if it matches id
                             return item['fips'] === id;
                         })
-
-                        console.log(state)
+                        
                         let confirmed = state.latest.confirmed;
+                        // return color based on number of cases
                         if (confirmed <= 1000) {
                             return '#fadbd8'
                         } else if (confirmed <= 10000) {
@@ -142,47 +136,38 @@
                     .attr('data-fips', (dataGeoItem) => {
                         return dataGeoItem.id
                     })
-                    .attr('data-education', (dataGeoItem) => {
-                        let id = dataGeoItem.id // get county id
-                        let county = eduData.find((item) => {
+                    .attr('data-cases', (dataGeoItem) => { // set attribute to number of cases per state
+                        let id = dataGeoItem.id // get state id
+                        let state = covidData.find((item) => {
                             return item['fips'] === id;
                         })
-                        let percentage = county['bachelorsOrHigher']
-                        return percentage
+                        let cases = state.latest.confirmed;
+                        return cases;
                     })
-                    .attr('data-county', (dataGeoItem) => {
-                        let id = dataGeoItem.id // get county id
-                        let county = eduData.find((item) => {
+                    .attr('data-state', (dataGeoItem) => { // set attribute to the state
+                        let id = dataGeoItem.id // get state id
+                        let state = covidData.find((item) => {
                             return item['fips'] === id;
                         })
-                        let foundCounty = county['area_name']
-                        return foundCounty
-                    })
-                    .attr('data-state', (dataGeoItem) => {
-                        let id = dataGeoItem.id // get county id
-                        let county = eduData.find((item) => {
-                            return item['fips'] === id;
-                        })
-                        let foundState = county['state']
-                        return foundState
+                        let foundState = state['state'];
+                        return foundState;
                     })
                     .on('mouseover', (dataGeoItem) => {
+                        fillColor = d3.event.target.attributes[2].nodeValue;
+                        d3.event.target.attributes[2].nodeValue = '#f4d03f'
                         tooltip.transition()
                             .style('visibility', 'visible')
-
-                        let id = dataGeoItem.id // get county id
-                        let county = eduData.find((item) => {
+                        let id = dataGeoItem.id; // get county id
+                        let state = covidData.find((item) => {
                             return item['fips'] === id;
                         })
-                        tooltip.text(county['fips'] + ' - ' + county['area_name'] + ', ' +
-                            county['state'] + ' : ' + county['bachelorsOrHigher'] + '%')
+                        tooltip.text(state['fips'] + ' - ' + state['state'] + ' : ' + state.latest.confirmed)
                     })
                     .on('mouseout', (countyDataItem) => {
+                        d3.event.target.attributes[2].nodeValue = fillColor;
                         tooltip.transition()
                             .style('visbility', 'visible');
                     })
-
-
             }
 
         });
