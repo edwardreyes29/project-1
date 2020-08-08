@@ -15,3 +15,5 @@
 
 // delete branch remotely
     git push origin --delete
+
+    cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/counties.json

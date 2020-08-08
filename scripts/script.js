@@ -223,8 +223,6 @@ $("#click-usa").click(function () {
 
         //Ajax call for US Deaths
         $.ajax(settings).done(function (response) {
-
-
             var total = 0;
             for (var i = 0; i < response.locations.length; i++) {
                 total += response.locations[i].latest.deaths;
@@ -290,6 +288,37 @@ $.ajax(regions).done(function (regionsData) {
     }
 
 });
+
+/* Toggle Map displays */
+
+// Display us map
+$("#click-usa").on("click", function () {
+    event.preventDefault();
+    $("#world-map-container").css("display", 'none');
+    $("#toggle-bubbles").css("display", 'none');
+    $("#us-map-container").css("display", 'block');
+});
+
+// Display world map
+$("#click-world").on("click", function () {
+    event.preventDefault();
+    $("#us-map-container").css("display", 'none');
+    $("#world-map-container").css("display", 'block');
+    $("#toggle-bubbles").css("display", 'block');
+});
+
+// toggle bubble display 
+var clicked = 0;
+$("#toggle-bubbles").on("click", function () {
+    event.preventDefault();
+    if (clicked === 0) {
+        $(".bubbles").css("visibility", "hidden");
+        clicked = 1;
+    } else {
+        $(".bubbles").css("visibility", "visible");
+        clicked = 0;
+    }
+})
 //click function for world map
 
 $(".world-map").click(function () {
@@ -326,12 +355,12 @@ $(".world-map").click(function () {
             });
         }
 
-    }); 
-    
+    });
+
     $.ajax(regions).done(function (regionsData) {
         var totalConfirmedCases = [];
         for (var i = 0; i < 50; i++) {
-    
+
             var reports = {
                 "async": true,
                 "crossDomain": true,
@@ -343,8 +372,8 @@ $(".world-map").click(function () {
                 },
             }
             $.ajax(reports).done(function (response) {
-    
-    
+
+
                 var total = 0;
                 for (var j = 0; j < response.data.length; j++) {
                     total += response.data[j].deaths;
@@ -360,7 +389,7 @@ $(".world-map").click(function () {
                 }
             });
         }
-    
+
     });
 });
 // Display world wide number of confirmed cases

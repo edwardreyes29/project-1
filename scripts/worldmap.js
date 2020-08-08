@@ -19,10 +19,15 @@ $.ajax(reports).done(function (response) {
 });
 
 // The svg
-var svg = d3.select("svg"),
+var svg = d3.select("#world_map_svg"),
     width = +svg.attr("width"),
     height = +svg.attr("height");
 
+svg.classed("#world-map-container", true)
+    .attr("preserveAspectRatio", "xMinYMin meet")
+    .attr("viewBox", "-300 -200 630 375")
+
+// svg.call(responsivefy);
 // Map and projection
 var projection = d3.geoMercator()
     .center([0, 20])                // GPS of location to zoom on
@@ -48,6 +53,9 @@ function ready(error, dataGeo) {
         .enter()
         .append("path")
         .attr("fill", "#b8b8b8")
+        .attr("data-country", function (d) {
+            return d.properties.name;
+        })
         .attr("d", d3.geoPath()
             .projection(projection)
         )
@@ -63,40 +71,44 @@ function ready(error, dataGeo) {
         .append("circle")
         .attr("cx", function (d) { return projection([+d.homelon, +d.homelat])[0] })
         .attr("cy", function (d) { return projection([+d.homelon, +d.homelat])[1] })
-        .attr("r", function (d) { return (size(+d.n) / 4 )})
+        .attr("r", function (d) { return (size(+d.n) / 4) })
         // .attr("r", 3)
         .style("fill", "red")
-        .attr("stroke", function (d) { if (d.n > 2000) { return "black" } else { return "none" } })
+        // .attr("stroke", function (d) { if (d.n > 2000) { return "black" } else { return "none" } })
         // .attr("stroke", none)
         .attr("stroke-width", 0.5)
         .attr("fill-opacity", .4)
+        .attr("visibility", "visible")
+        .attr("class", "bubbles")
 
     // Add title and explanation
-    svg
-        .append("text")
-        .attr("text-anchor", "end")
-        .style("fill", "black")
-        .attr("x", width - 10)
-        .attr("y", height - 30)
-        .attr("width", 90)
-        .html("Confirmed Cases Worldwide")
-        .style("font-size", 14)
+    // svg
+    //     .append("text")
+    //     .attr("text-anchor", "end")
+    //     .style("fill", "black")
+    //     .attr("x", width - 10)
+    //     .attr("y", height - 30)
+    //     .attr("width", 90)
+    //     .html("Confirmed Cases Worldwide")
+    //     .style("font-size", 14)
 
     // Add legend: circles
     var valuesToShow = [10000, 100000, 1000000]
-    var xCircle = 40
-    var xLabel = 90
+    var xCircle = -240;
+    var xLabel = -200;
     svg
         .selectAll("legend")
         .data(valuesToShow)
         .enter()
         .append("circle")
         .attr("cx", xCircle)
-        .attr("cy", function (d) { return height - (size(d) / 1.5)})
+        .attr("cy", function (d) { return (height - (size(d) / 1.5)) + 150 })
         .attr("r", function (d) { return (size(d) / 4) })
         .style("fill", "red")
-        .attr("stroke", "black")
+        // .attr("stroke", "black")
         .attr("fill-opacity", .4)
+        .attr("visibility", "visible")
+        .attr("class", "bubbles")
 
     // Add legend: segments
     svg
@@ -106,10 +118,12 @@ function ready(error, dataGeo) {
         .append("line")
         .attr('x1', function (d) { return xCircle + (size(d) / 4) })
         .attr('x2', xLabel)
-        .attr('y1', function (d) { return height - (size(d) / 1.5)})
-        .attr('y2', function (d) { return height - (size(d) / 1.5)})
+        .attr('y1', function (d) { return (height - (size(d) / 1.5)) + 150 })
+        .attr('y2', function (d) { return (height - (size(d) / 1.5)) + 150 })
         .attr('stroke', 'black')
         .style('stroke-dasharray', ('2,2'))
+        .attr("visibility", "visible")
+        .attr("class", "bubbles")
 
     // Add legend: labels
     svg
@@ -118,10 +132,39 @@ function ready(error, dataGeo) {
         .enter()
         .append("text")
         .attr('x', xLabel)
-        .attr('y', function (d) { return height - (size(d) / 1.5)})
+        .attr('y', function (d) { return (height - (size(d) / 1.5)) + 150 })
         .text(function (d) { return formatNumber(d) })
         .style("font-size", 10)
         .attr('alignment-baseline', 'middle')
+        .attr("visibility", "visible")
+        .attr("class", "bubbles")
+}
+
+function responsivefy(svg) {
+    // get container + svg aspect ratio
+    var container = d3.select(svg.node().parentNode),
+        width = parseInt(svg.style("width")),
+        height = parseInt(svg.style("height")),
+        aspect = width / height;
+
+    // add viewBox and preserveAspectRatio properties,
+    // and call resize so that svg resizes on inital page load
+    svg.attr("viewBox", "0 0 " + width + " " + height)
+        .attr("perserveAspectRatio", "xMinYMid")
+        .call(resize);
+
+    // to register multiple listeners for same event type, 
+    // you need to add namespace, i.e., 'click.foo'
+    // necessary if you call invoke this function for multiple svgs
+    // api docs: https://github.com/mbostock/d3/wiki/Selections#on
+    d3.select(window).on("resize." + container.attr("id"), resize);
+
+    // get width of container and resize svg to fit it
+    function resize() {
+        var targetWidth = parseInt(container.style("width"));
+        svg.attr("width", targetWidth);
+        svg.attr("height", Math.round(targetWidth / aspect));
+    }
 }
 
 
