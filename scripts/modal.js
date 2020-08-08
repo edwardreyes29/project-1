@@ -51,7 +51,7 @@ $.ajax(locationAPI).done(function (response) {
         $(".modal-body").append("<img class='hotel-photo img-fluid'  src= '" + response.data[0].photo.images.small.url + "'/>")
 
 
-       // $("#total-cases-country").append("<span class='total-number-state'>" + response.locations[i].state + "</span> " + response.locations[i].latest.confirmed + "</br>")
+        $("#total-cases-country").append("<span class='total-number-state'>" + response.locations[i].state + "</span> " + response.locations[i].latest.confirmed + "</br>")
 
     });
 

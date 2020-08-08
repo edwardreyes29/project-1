@@ -172,7 +172,7 @@ $.ajax(reports).done(function (response) {
 
 
 
-//Code for US Map is below this line - Nick
+//Code for US Map is below this line 
 
 $("#click-usa").click(function () {
 
@@ -213,11 +213,9 @@ $("#click-usa").click(function () {
 
             async function asyncCall2() {
                 for (var i = 0; i < response.locations.length; i++) {
-
-                    $("#total-cases-country").append(response.locations[i].state + " <span class='text-success'>" + formatNumber(response.locations[i].latest.confirmed) + "</span> </br>")
-                }
+                    $("#total-cases-country").append(`<div class="input-search" data-toggle="modal" data-target="#exampleModal" data-state=${response.locations[i].state}>${response.locations[i].state} <span class="text-success" >${formatNumber(response.locations[i].latest.confirmed)}</span></div>`);                             
+                }    
             }
-
         });
 
 
