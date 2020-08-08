@@ -28,3 +28,7 @@
     border-color: #343a40!important;
     background: white;
 }
+
+#world-map-container {
+    width: 100%;
+}
