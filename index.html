@@ -45,28 +45,26 @@
             </div>
             <div class="col-6">
                 <!-- Map display -->
-                <ul class="nav justify-content-center">
-                    <div class="border border-dark" id="world-map-container">
-                        <svg id="world_map_svg"></svg>
-                        <div class="container pr-3 pl-3" >
-                            <h2 class="m-0 p-0" id="title">US Coronavirus statistics in the United States</h2>
-                            <div class="m-0 p-0" id="description">Number of confirmed cases world wide</div>
-                            <div class="m-0" id="tooltip-world">--</div>
-                        </div>
+                <div class="border border-dark" id="world-map-container">
+                    <svg id="world_map_svg"></svg>
+                    <div class="container pr-3 pl-3">
+                        <h2 class="m-0 p-0" id="title">US Coronavirus statistics in the United States</h2>
+                        <div class="m-0 p-0" id="description">Number of confirmed cases world wide</div>
+                        <div class="m-0" id="tooltip-world">--</div>
                     </div>
-                    <div class="border border-dark" id="us-map-container">
-                        <svg id="us_map_svg"></svg>
-                        <div class="container pr-3 pl-3 ">
-                            <h2 class="m-0 p-0"  id="title">US Coronavirus statistics in the United States</h2>
-                            <p class="p-0 m-0" id="description">Number of confirmed cases per state</p>
-                            <div class="m-0" id="tooltip">--</div>
-                        </div>
+                </div>
+                <div class="border border-dark" id="us-map-container">
+                    <svg id="us_map_svg"></svg>
+                    <div class="container pr-3 pl-3 ">
+                        <h2 class="m-0 p-0" id="title">US Coronavirus statistics in the United States</h2>
+                        <p class="p-0 m-0" id="description">Number of confirmed cases per state</p>
+                        <div class="m-0" id="tooltip">--</div>
                     </div>
+                </div>
 
-                    <button class="btn btn-primary text-light m-3" href="#" id="click-world">World Map</button>
-                    <button class="btn btn-primary text-light m-3" href="#" id="click-usa">USA Map</button>
-                    <button class="btn btn-danger text-light m-3" href="#" id="toggle-bubbles">Toggle bubbles</button>
-
+                <button class="btn btn-primary text-light m-3 world-map" href="#" id="click-world">World Map</button>
+                <button class="btn btn-primary text-light m-3" href="#" id="click-usa">USA Map</button>
+                <button class="btn btn-danger text-light m-3" href="#" id="toggle-bubbles">Toggle bubbles</button>
             </div>
             <div class="col-3">
                 <!-- Total Confirmed Deaths-->
@@ -80,6 +78,7 @@
             </div>
         </div>
     </div>
+    
     <div class="card mb-3">
         <div class="card-body">
             <h5 style=text-align:center>Name of selected country</h5>
@@ -95,6 +94,7 @@
     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
         Launch demo modal
     </button>
+
     <!-- Modal -->
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -110,31 +110,30 @@
                     ...
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" id="modal-close" data-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
-        integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js"
-        integrity="sha384-XEerZL0cuoUbHE4nZReLT7nx9gQrQreJekYhJD9WNWhH8nEW+0c5qq7aIo2Wl30J"
-        crossorigin="anonymous"></script>
-    <script src="scripts/script.js"></script>
-    <script src="https://d3js.org/d3.v4.js"></script>
-    <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
-    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"
-        integrity="sha512-4UKI/XKm3xrvJ6pZS5oTRvIQGIzZFoXR71rRBb1y2N+PbwAsKa5tPl2J6WvbEvwN3TxQCm8hMzsl/pO+82iRlg=="
-        crossorigin="anonymous"></script>
-    <script src="scripts/worldmap.js"></script>
-    <script src="scripts/usmap.js"></script>
-    <script src="scripts/modal.js"></script>
+            <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+                integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+                integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+                crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js"
+                integrity="sha384-XEerZL0cuoUbHE4nZReLT7nx9gQrQreJekYhJD9WNWhH8nEW+0c5qq7aIo2Wl30J"
+                crossorigin="anonymous"></script>
+            <script src="scripts/script.js"></script>
+            <script src="https://d3js.org/d3.v4.js"></script>
+            <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+            <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"
+                integrity="sha512-4UKI/XKm3xrvJ6pZS5oTRvIQGIzZFoXR71rRBb1y2N+PbwAsKa5tPl2J6WvbEvwN3TxQCm8hMzsl/pO+82iRlg=="
+                crossorigin="anonymous"></script>
+            <script src="scripts/worldmap.js"></script>
+            <script src="scripts/usmap.js"></script>
+            <script src="scripts/modal.js"></script>
 </body>
 
 </html>

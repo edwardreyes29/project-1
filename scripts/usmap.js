@@ -94,7 +94,7 @@ $.getJSON("https://coronavirus-us-api.p.rapidapi.com/api/state/all?source=nyt&ra
                 let state = covidData.find((item) => {
                     return item['fips'] === id;
                 })
-                tooltip.text(state['state'] + ': ' + formatNumber(state.latest.confirmed) + "cases");
+                tooltip.text(state['state'] + ': ' + formatNumber(state.latest.confirmed) + " cases");
             })
             .on('mouseout', (countyDataItem) => {
                 d3.event.target.attributes[2].nodeValue = fillColor;

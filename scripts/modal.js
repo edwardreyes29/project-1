@@ -8,7 +8,7 @@ $(document).on("click", ".input-search", function(event) {
     var value = $(this).data("state")
     console.log(value);
 
-
+    
 
 var locationAPI = {
 	"async": true,
@@ -42,7 +42,7 @@ $.ajax(locationAPI).done(function (response) {
         console.log(response.data[0].price);
         console.log(response.data[0].rating);
         console.log(response.data[0]);
-
+       
         $(".modal-body").append("<div class='hotel-name'>" + "Hotel Name: " + response.data[0].name + "</div>")
         $(".modal-body").append("<div class='hotel-price'>" + "Price: " + response.data[0].price + "</div>")
         $(".modal-body").append("<div class='hotel-rating'>" + "Rating: " + response.data[0].rating + "</div>")
@@ -58,3 +58,9 @@ $.ajax(locationAPI).done(function (response) {
 });
 
 })
+//hide demo button.
+$("#modal-close").on("click", function(event) {
+$(".modal-body").empty();
+
+
+});
