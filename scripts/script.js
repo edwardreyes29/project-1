@@ -157,7 +157,6 @@ var reports = {
 
 var totalWorldDeaths = 0;
 $.ajax(reports).done(function (response) {
-  
     for (var i = 0; i < response.data.length; i++) {
         totalWorldDeaths += response.data[i].deaths;
     }
@@ -286,12 +285,31 @@ $.ajax(regions).done(function (regionsData) {
 
 // Display us map
 $("#click-usa").on("click", function() {
+    event.preventDefault();
     $("#world-map-container").css("display", 'none');
+    $("#toggle-bubbles").css("display", 'none');
     $("#us-map-container").css("display", 'block');
 });
 
 // Display world map
 $("#click-world").on("click", function() {
+    event.preventDefault();
     $("#us-map-container").css("display", 'none');
     $("#world-map-container").css("display", 'block');
+    $("#toggle-bubbles").css("display", 'block');
 });
+
+// toggle bubble display 
+var clicked = 0;
+$("#toggle-bubbles").on("click", function() {
+    event.preventDefault();
+    if (clicked === 0) {
+        $(".bubbles").css("visibility", "hidden");
+        clicked = 1;
+    } else {
+        $(".bubbles").css("visibility", "visible");
+        clicked = 0;
+    }
+    
+    
+})

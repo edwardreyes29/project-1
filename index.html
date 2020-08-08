@@ -33,7 +33,8 @@
             </nav>
         </div>
         <div class="row">
-            <div class="col-3"> <!-- Total Confirmed Cases -->
+            <div class="col-3">
+                <!-- Total Confirmed Cases -->
                 <div class="card" style="height: 40rem;">
                     <div id="total-cases-div" class="card-body">
                         <h5 id="total-world-confirmed" class="card-title">Total Cases</h5>
@@ -42,22 +43,33 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6"> <!-- Map display -->
+            <div class="col-6">
+                <!-- Map display -->
                 <ul class="nav justify-content-center">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" id="click-world">World Map</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" id="click-usa">USA Map</a>
-                    </li>
                     <div class="border border-dark" id="world-map-container">
-                        <svg id="world_map_svg" width="630" height="350"></svg>
+                        <svg id="world_map_svg"></svg>
+                        <div class="container pr-3 pl-3" >
+                            <h2 class="m-0 p-0" id="title">US Coronavirus statistics in the United States</h2>
+                            <div class="m-0 p-0" id="description">Number of confirmed cases world wide</div>
+                            <div class="m-0" id="tooltip-world">--</div>
+                        </div>
                     </div>
                     <div class="border border-dark" id="us-map-container">
-                        <svg id="us_map_svg" width="630" height="350"></svg>
+                        <svg id="us_map_svg"></svg>
+                        <div class="container pr-3 pl-3 ">
+                            <h2 class="m-0 p-0"  id="title">US Coronavirus statistics in the United States</h2>
+                            <p class="p-0 m-0" id="description">Number of confirmed cases per state</p>
+                            <div class="m-0" id="tooltip">--</div>
+                        </div>
                     </div>
+
+                    <button class="btn btn-primary text-light m-3" href="#" id="click-world">World Map</button>
+                    <button class="btn btn-primary text-light m-3" href="#" id="click-usa">USA Map</button>
+                    <button class="btn btn-danger text-light m-3" href="#" id="toggle-bubbles">Toggle bubbles</button>
+
             </div>
-            <div class="col-3"> <!-- Total Confirmed Deaths-->
+            <div class="col-3">
+                <!-- Total Confirmed Deaths-->
                 <div class="card" style="height: 40rem;">
                     <div class="card-body">
                         <h5 id="total-world-deaths" class="card-title" style="color: black;">Total Deaths</h5>
@@ -117,7 +129,11 @@
     <script src="https://d3js.org/d3.v4.js"></script>
     <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"
+        integrity="sha512-4UKI/XKm3xrvJ6pZS5oTRvIQGIzZFoXR71rRBb1y2N+PbwAsKa5tPl2J6WvbEvwN3TxQCm8hMzsl/pO+82iRlg=="
+        crossorigin="anonymous"></script>
     <script src="scripts/worldmap.js"></script>
+    <script src="scripts/usmap.js"></script>
     <script src="scripts/modal.js"></script>
 </body>
 
