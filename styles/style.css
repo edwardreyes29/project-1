@@ -32,3 +32,8 @@
 #world-map-container {
     width: 100%;
 }
+
+#us-map-container {
+    width: 100%;
+    display: none;
+}

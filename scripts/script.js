@@ -219,8 +219,6 @@ $("#click-usa").click(function () {
 
         //Ajax call for US Deaths
         $.ajax(settings).done(function (response) {
-         
-
             var total = 0;
             for (var i = 0; i < response.locations.length; i++) {
                 total += response.locations[i].latest.deaths;
@@ -282,4 +280,18 @@ $.ajax(regions).done(function (regionsData) {
         });
     }
 
+});
+
+/* Toggle Map displays */
+
+// Display us map
+$("#click-usa").on("click", function() {
+    $("#world-map-container").css("display", 'none');
+    $("#us-map-container").css("display", 'block');
+});
+
+// Display world map
+$("#click-world").on("click", function() {
+    $("#us-map-container").css("display", 'none');
+    $("#world-map-container").css("display", 'block');
 });

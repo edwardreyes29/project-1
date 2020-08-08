@@ -33,7 +33,7 @@
             </nav>
         </div>
         <div class="row">
-            <div class="col-3">
+            <div class="col-3"> <!-- Total Confirmed Cases -->
                 <div class="card" style="height: 40rem;">
                     <div id="total-cases-div" class="card-body">
                         <h5 id="total-world-confirmed" class="card-title">Total Cases</h5>
@@ -42,10 +42,10 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-6"> <!-- Map display -->
                 <ul class="nav justify-content-center">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">World Map</a>
+                        <a class="nav-link" href="#" id="click-world">World Map</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" id="click-usa">USA Map</a>
@@ -53,8 +53,11 @@
                     <div class="border border-dark" id="world-map-container">
                         <svg id="world_map_svg" width="630" height="350"></svg>
                     </div>
+                    <div class="border border-dark" id="us-map-container">
+                        <svg id="us_map_svg" width="630" height="350"></svg>
+                    </div>
             </div>
-            <div class="col-3">
+            <div class="col-3"> <!-- Total Confirmed Deaths-->
                 <div class="card" style="height: 40rem;">
                     <div class="card-body">
                         <h5 id="total-world-deaths" class="card-title" style="color: black;">Total Deaths</h5>

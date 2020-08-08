@@ -24,7 +24,7 @@
             /* transform: scale(0.5); */
         }
 
-        #world-map-container{
+        #world-map-container {
             display: none;
         }
     </style>
@@ -33,13 +33,14 @@
 <body>
 
     <div class="big-container">
-        <h2 id="title">US Coronavirus statistics in the United States</h2>
-        <div id="description">Number of confirmed cases per state</div>
-        <div id="tooltip"></div>
+
         <div id="world-map-container">
             <svg id="world_map_svg" width="1000px" height="600"></svg>
         </div>
         <div id="us-map-container">
+            <h2 id="title">US Coronavirus statistics in the United States</h2>
+            <div id="description">Number of confirmed cases per state</div>
+            <div id="tooltip"></div>
             <svg id="us_map_svg" width="1000px" height="600"></svg>
         </div>
     </div>
@@ -171,7 +172,7 @@
                 svg.append("text").attr("x", 875).attr("y", 460).text("<= 10,000 cases").style("font-size", "16px").attr("alignment-baseline", "middle")
                 svg.append("text").attr("x", 875).attr("y", 500).text("<= 100,000 cases").style("font-size", "16px").attr("alignment-baseline", "middle")
                 svg.append("text").attr("x", 875).attr("y", 540).text("<= 1,000,000 cases").style("font-size", "16px").attr("alignment-baseline", "middle")
-                
+
 
             }
         });
