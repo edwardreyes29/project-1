@@ -31,9 +31,9 @@ $.getJSON("https://coronavirus-us-api.p.rapidapi.com/api/state/all?source=nyt&ra
         .await(ready);
 
     function ready(error, data, eduData) {
-        console.log(data)
-        // console.log(eduData)
-        console.log(covidData)
+        // console.log(data)
+        // // console.log(eduData)
+        // console.log(covidData)
 
         dataGeo = topojson.feature(data, data.objects.states).features;
 
