@@ -54,7 +54,6 @@ $(document).on("click", ".input-search", function (event) {
                 try {
                     // generate a random number
                     var rand = values.splice(Math.random() * values.length, 1)[0];
-
                     $("#loader-" + (i + 1)).css("display", "none");
                     $("#hotel-card-" + (i + 1)).css("display", "block");
                     $("#hotel-card-" + (i + 1) + "-title").html("Country: <span class='text-success'>" + countryName);
@@ -67,18 +66,22 @@ $(document).on("click", ".input-search", function (event) {
                 } catch(err) {
                     for (var i = 0; i < 3; i++) {
                         $("#loader-" + (i + 1)).css("display", "none");
-                        $("#hotel-card-" + (i + 1) + "-title").html("<h5><span class='text-danger'>Results not found");
-                    }   
+                    }
+                    $(".modal-title").html("<h5><span class='text-danger'>Results not found</span></h5>");   
                 }
             }
-
             console.log("success")
         });
-    });
+    }).fail(function() {
+        for (var i = 0; i < 3; i++) {
+            $("#loader-" + (i + 1)).css("display", "none"); 
+        }  
+        $(".modal-title").html("<h5><span class='text-danger'>API error</span></h5>");   
+    })
 })
 //hide demo button.
 $("#modal-close").on("click", function (event) {
-    // $(".modal-body").empty();
+    $(".modal-title").html("Hotel Listings"); 
     for (var i = 0; i < 3; i++) {
         $("#hotel-card-"+(i+1)).css("display", "none");
         $("#hotel-card-"+(i+1)+"-title").empty()
@@ -93,7 +96,7 @@ $("#modal-close").on("click", function (event) {
 });
 
 $("#hotel-modal-close").on("click", function(event) {
-    // $(".modal-body").empty();
+    $(".modal-title").html("Hotel Listings"); 
     for (var i = 0; i < 3; i++) {
         $("#hotel-card-"+(i+1)).css("display", "none");
         $("#hotel-card-"+(i+1)+"-title").empty()
