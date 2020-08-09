@@ -53,7 +53,7 @@ function displayWorldCases() {
                 }
                 try {
                     var countryName = response.data[0].region.name.replace(/[^a-zA-Z ]/g, ""); // removes special character
-                    $("#total-cases-country").append(`<div class="input-search" data-toggle="modal" data-target="#exampleModal" data-state="${countryName}" data-number=${total}>${countryName} <span class="text-success">${formatNumber(total)}</span></div>`);
+                    $("#total-cases-country").append(`<div class="input-search" data-toggle="modal" data-target="#exampleModal" data-country="${countryName}" data-number=${total}>${countryName} <span class="text-success">${formatNumber(total)}</span></div>`);
 
                 } catch (err) {
                     // do nothing
@@ -98,7 +98,7 @@ function displayWorldDeaths() {
                 }
                 try {
                     var countryName = response.data[0].region.name.replace(/[^a-zA-Z ]/g, ""); // removes special character
-                    $("#total-deaths").append(`<div class="input-search" data-toggle="modal" data-target="#exampleModal" data-state="${countryName}" data-number=${total}>${countryName} <span class="text-success">${formatNumber(total)}</span></div>`);
+                    $("#total-deaths").append(`<div class="input-search" data-toggle="modal" data-target="#exampleModal" data-country="${countryName}" data-number=${total}>${countryName} <span class="text-success">${formatNumber(total)}</span></div>`);
                 } catch (err) {
                     // do nothing
                 }
@@ -169,11 +169,11 @@ function displayUSACases() {
     }
     //Ajax call for US Cases
     $.ajax(statesAPI).done(function (response) {
-        console.log(response);
         for (var i = 0; i < response.locations.length; i++) {
+            var countryName = response.locations[i].country;
             var stateName = response.locations[i].state;
-            var numDeaths = response.locations[i].latest.deaths
-            $("#total-cases-country").append(`<div class="input-search" data-toggle="modal" data-target="#exampleModal" data-state="${stateName}">${stateName} <span class="text-success">${formatNumber(numDeaths)}</span></div>`);
+            var numCases = response.locations[i].latest.deaths
+            $("#total-cases-country").append(`<div class="input-search" data-toggle="modal" data-target="#exampleModal" data-state="${stateName}" data-country="${countryName}" data-number=${numCases}>${stateName} <span class="text-success">${formatNumber(numCases)}</span></div>`);
         }
     });
 
@@ -181,9 +181,10 @@ function displayUSACases() {
     $.ajax(statesAPI).done(function (response) {
         for (var i = 0; i < response.locations.length; i++) {
             // console.log(response.locations[i].state);
+            var countryName = response.locations[i].country;
             var stateName = response.locations[i].state;
             var numDeaths = response.locations[i].latest.deaths
-            $("#total-deaths").append(`<div class="input-search" data-toggle="modal" data-target="#exampleModal" data-state="${stateName}" data-number=${numDeaths}>${stateName} <span class="text-success" >${formatNumber(numDeaths)}</span></div>`);
+            $("#total-deaths").append(`<div class="input-search" data-toggle="modal" data-target="#exampleModal" data-state="${stateName}" data-country="${countryName}" data-number=${numDeaths}>${stateName} <span class="text-success" >${formatNumber(numDeaths)}</span></div>`);
         }
     });
 }

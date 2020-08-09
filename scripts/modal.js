@@ -4,16 +4,26 @@
 // })
 
 $(document).on("click", ".input-search", function (event) {
-    $(".modal-title").html("Locations:");
-    $(".modal-body").empty();
-    console.log("hello");
-    var value = $(this).data("state")
-    console.log(value);
+    // Reset modal title
+    $(".modal-title").html("Country: ");
+    // Empty Modal in case api is still loading
+    // $(".modal-body").empty();
+    var countryName = $(this).data("country");
+    var stateName = $(this).data("state");
+
+    // If element does not have attribute data-state, set to empty string
+    if (stateName === undefined) {
+        stateName = "";
+    }
+
+    // Create the query
+    var query = countryName + " " + stateName;
+    
     var locationAPI = {
         "async": true,
         "crossDomain": true,
         // "url": "https://tripadvisor1.p.rapidapi.com/locations/search?location_id=1&limit=30&sort=relevance&offset=0&lang=en_US&currency=USD&units=km&query=" + value,
-        "url": "https://tripadvisor1.p.rapidapi.com/locations/search?limit=30&sort=relevance&offset=0&lang=en_US&currency=USD&query=" + value,
+        "url": "https://tripadvisor1.p.rapidapi.com/locations/search?limit=30&sort=relevance&offset=0&lang=en_US&currency=USD&query=" + query,
         "method": "GET",
         "headers": {
             "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
@@ -36,24 +46,21 @@ $(document).on("click", ".input-search", function (event) {
         }
 
         $.ajax(HotelApi).done(function (response) {
-            console.log(response);
-            console.log(response.data[0].name);
-            console.log(response.data[0].price);
-            console.log(response.data[0].rating);
-            console.log(response.data[0]);
-            $(".modal-title").html("Location: " + value);
-            $(".modal-body").append("<div class='hotel-name'>" + "Hotel Name: " + response.data[0].name + "</div>")
-            $(".modal-body").append("<div class='hotel-price'>" + "Price: " + response.data[0].price + "</div>")
-            $(".modal-body").append("<div class='hotel-rating'>" + "Rating: " + response.data[0].rating + "</div>")
-            $(".modal-body").append("<div class='hotel-numreviews'>" + "Number of Reviews: " + response.data[0].num_reviews + "</div>")
-            $(".modal-body").append("<div class='hotel-location'>" + response.data[0].location_string + "</div>")
-            $(".modal-body").append("<img class='hotel-photo img-fluid'  src= '" + response.data[0].photo.images.small.url + "'/>")
+            $("#loader-1").hide();
+            $("#hotel-card-1").css("display", "block");
+            $("#hotel-card-1-title").html("Country: <span class='text-success'>" + countryName);
+            $("#hotel-card-1-text").append("<div class='hotel-name'> <span class='text-secondary'>Hotel Name:</span> " + response.data[0].name + "</div>")
+            $("#hotel-card-1-text").append("<div class='hotel-price'> <span class='text-secondary'>Price:</span> " + response.data[0].price + "</div>")
+            $("#hotel-card-1-text").append("<div class='hotel-rating'> <span class='text-secondary'>Rating:</span> " + response.data[0].rating + "</div>")
+            $("#hotel-card-1-text").append("<div class='hotel-reviews'> <span class='text-secondary'>Number of Reviews:</span> " + response.data[0].num_reviews + "</div>")
+            $("#hotel-card-1-text").append("<div class='hotel-location'> <span class='text-secondary'>Location:</span> " + response.data[0].location_string + "</div>")
+            $("#hotel-card-1-img").attr("src", response.data[0].photo.images.large.url)
             // $("#total-cases-country").append("<span class='total-number-state'>" + response.locations[i].state + "</span> " + response.locations[i].latest.confirmed + "</br>")
+            console.log("success")
         });
     });
 })
 //hide demo button.
 $("#modal-close").on("click", function (event) {
-    $(".modal-title").html("Locations:");
-    $(".modal-body").empty();
+    // $(".modal-body").empty();
 });
