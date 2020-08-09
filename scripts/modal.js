@@ -4,13 +4,11 @@
 // })
 
 $(document).on("click", ".input-search", function (event) {
-    // Reset modal title
-    $(".modal-title").html("Country: ");
     // Empty Modal in case api is still loading
     // $(".modal-body").empty();
     var countryName = $(this).data("country");
     var stateName = $(this).data("state");
-
+    console.log(stateName);
     // If element does not have attribute data-state, set to empty string
     if (stateName === undefined) {
         stateName = "";
@@ -46,29 +44,34 @@ $(document).on("click", ".input-search", function (event) {
         }
 
         $.ajax(HotelApi).done(function (response) {
-
+            // used to not pick the same number twice
+            console.log(response.data.length)
+            var values = [];
+            for (var i = 1; i <= response.data.length; ++i){
+                values.push(i);
+            }
             for (var i = 0; i < 3; i++) {
-                $("#loader-"+(i+1)).hide();
-                $("#hotel-card-"+(i+1)).css("display", "block");
-                $("#hotel-card-"+(i+1)+"-title").html("Country: <span class='text-success'>" + countryName);
-                $("#hotel-card-"+(i+1)+"-text").append("<div class='hotel-name'> <span class='text-secondary'>Hotel Name:</span> " + response.data[i].name + "</div>")
-                $("#hotel-card-"+(i+1)+"-text").append("<div class='hotel-price'> <span class='text-secondary'>Price:</span> " + response.data[i].price + "</div>")
-                $("#hotel-card-"+(i+1)+"-text").append("<div class='hotel-rating'> <span class='text-secondary'>Rating:</span> " + response.data[i].rating + "</div>")
-                $("#hotel-card-"+(i+1)+"-text").append("<div class='hotel-reviews'> <span class='text-secondary'>Number of Reviews:</span> " + response.data[i].num_reviews + "</div>")
-                $("#hotel-card-"+(i+1)+"-text").append("<div class='hotel-location'> <span class='text-secondary'>Location:</span> " + response.data[i].location_string + "</div>")
-                $("#hotel-card-"+(i+1)+"-img").attr("src", response.data[i].photo.images.large.url)
+                try {
+                    // generate a random number
+                    var rand = values.splice(Math.random() * values.length, 1)[0];
+
+                    $("#loader-" + (i + 1)).css("display", "none");
+                    $("#hotel-card-" + (i + 1)).css("display", "block");
+                    $("#hotel-card-" + (i + 1) + "-title").html("Country: <span class='text-success'>" + countryName);
+                    $("#hotel-card-" + (i + 1) + "-text").append("<div class='hotel-name'> <span class='text-secondary'>Hotel Name:</span> " + response.data[rand].name + "</div>")
+                    $("#hotel-card-" + (i + 1) + "-text").append("<div class='hotel-price'> <span class='text-secondary'>Price:</span> " + response.data[rand].price + "</div>")
+                    $("#hotel-card-" + (i + 1) + "-text").append("<div class='hotel-rating'> <span class='text-secondary'>Rating:</span> " + response.data[rand].rating + "</div>")
+                    $("#hotel-card-" + (i + 1) + "-text").append("<div class='hotel-reviews'> <span class='text-secondary'>Number of Reviews:</span> " + response.data[rand].num_reviews + "</div>")
+                    $("#hotel-card-" + (i + 1) + "-text").append("<div class='hotel-location'> <span class='text-secondary'>Location:</span> " + response.data[rand].location_string + "</div>")
+                    $("#hotel-card-" + (i + 1) + "-img").attr("src", response.data[rand].photo.images.large.url)
+                } catch(err) {
+                    for (var i = 0; i < 3; i++) {
+                        $("#loader-" + (i + 1)).css("display", "none");
+                        $("#hotel-card-" + (i + 1) + "-title").html("<h5><span class='text-danger'>Results not found");
+                    }   
+                }
             }
 
-            // $("#loader-1").hide();
-            // $("#hotel-card-1").css("display", "block");
-            // $("#hotel-card-1-title").html("Country: <span class='text-success'>" + countryName);
-            // $("#hotel-card-1-text").append("<div class='hotel-name'> <span class='text-secondary'>Hotel Name:</span> " + response.data[0].name + "</div>")
-            // $("#hotel-card-1-text").append("<div class='hotel-price'> <span class='text-secondary'>Price:</span> " + response.data[0].price + "</div>")
-            // $("#hotel-card-1-text").append("<div class='hotel-rating'> <span class='text-secondary'>Rating:</span> " + response.data[0].rating + "</div>")
-            // $("#hotel-card-1-text").append("<div class='hotel-reviews'> <span class='text-secondary'>Number of Reviews:</span> " + response.data[0].num_reviews + "</div>")
-            // $("#hotel-card-1-text").append("<div class='hotel-location'> <span class='text-secondary'>Location:</span> " + response.data[0].location_string + "</div>")
-            // $("#hotel-card-1-img").attr("src", response.data[0].photo.images.large.url)
-            // $("#total-cases-country").append("<span class='total-number-state'>" + response.locations[i].state + "</span> " + response.locations[i].latest.confirmed + "</br>")
             console.log("success")
         });
     });
@@ -76,4 +79,30 @@ $(document).on("click", ".input-search", function (event) {
 //hide demo button.
 $("#modal-close").on("click", function (event) {
     // $(".modal-body").empty();
+    for (var i = 0; i < 3; i++) {
+        $("#hotel-card-"+(i+1)).css("display", "none");
+        $("#hotel-card-"+(i+1)+"-title").empty()
+        $("#hotel-card-"+(i+1)+"-text").empty()
+        $("#hotel-card-"+(i+1)+"-text").empty()
+        $("#hotel-card-"+(i+1)+"-text").empty()
+        $("#hotel-card-"+(i+1)+"-text").empty()
+        $("#hotel-card-"+(i+1)+"-text").empty()
+        $("#hotel-card-"+(i+1)+"-img").attr("src", "")
+        $("#loader-"+(i+1)).css("display", "block");
+    }
 });
+
+$("#hotel-modal-close").on("click", function(event) {
+    // $(".modal-body").empty();
+    for (var i = 0; i < 3; i++) {
+        $("#hotel-card-"+(i+1)).css("display", "none");
+        $("#hotel-card-"+(i+1)+"-title").empty()
+        $("#hotel-card-"+(i+1)+"-text").empty()
+        $("#hotel-card-"+(i+1)+"-text").empty()
+        $("#hotel-card-"+(i+1)+"-text").empty()
+        $("#hotel-card-"+(i+1)+"-text").empty()
+        $("#hotel-card-"+(i+1)+"-text").empty()
+        $("#hotel-card-"+(i+1)+"-img").attr("src", "")
+        $("#loader-"+(i+1)).css("display", "block");
+    }
+})
