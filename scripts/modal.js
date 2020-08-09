@@ -4,11 +4,13 @@
 // })
 
 $(document).on("click", ".input-search", function (event) {
+    var apiKey = "d60b77f798msh32257c07ec0e08ap1cb378jsn227b3dea201a";
+    apiKey = "73403c6c67msha0632541172766bp194ccejsn820ec377a86a";
     // Empty Modal in case api is still loading
     // $(".modal-body").empty();
     var countryName = $(this).data("country");
     var stateName = $(this).data("state");
-    console.log(stateName);
+    // console.log(stateName);
     // If element does not have attribute data-state, set to empty string
     if (stateName === undefined) {
         stateName = "";
@@ -25,13 +27,13 @@ $(document).on("click", ".input-search", function (event) {
         "method": "GET",
         "headers": {
             "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
-            "x-rapidapi-key": "d60b77f798msh32257c07ec0e08ap1cb378jsn227b3dea201a"
+            "x-rapidapi-key": apiKey
         }
     }
 
     $.ajax(locationAPI).done(function (response) {
         // console.log(response.data[0].result_object.location_id);
-        console.log(response);
+        // console.log(response);
         var HotelApi = {
             "async": true,
             "crossDomain": true,
@@ -39,7 +41,7 @@ $(document).on("click", ".input-search", function (event) {
             "method": "GET",
             "headers": {
                 "x-rapidapi-host": "tripadvisor1.p.rapidapi.com",
-                "x-rapidapi-key": "d60b77f798msh32257c07ec0e08ap1cb378jsn227b3dea201a"
+                "x-rapidapi-key": apiKey
             }
         }
 
@@ -51,24 +53,35 @@ $(document).on("click", ".input-search", function (event) {
                 values.push(i);
             }
             for (var i = 0; i < 3; i++) {
-                try {
-                    // generate a random number
-                    var rand = values.splice(Math.random() * values.length, 1)[0];
-                    $("#loader-" + (i + 1)).css("display", "none");
-                    $("#hotel-card-" + (i + 1)).css("display", "block");
-                    $("#hotel-card-" + (i + 1) + "-title").html("Country: <span class='text-success'>" + countryName);
-                    $("#hotel-card-" + (i + 1) + "-text").append("<div class='hotel-name'> <span class='text-secondary'>Hotel Name:</span> " + response.data[rand].name + "</div>")
-                    $("#hotel-card-" + (i + 1) + "-text").append("<div class='hotel-price'> <span class='text-secondary'>Price:</span> " + response.data[rand].price + "</div>")
-                    $("#hotel-card-" + (i + 1) + "-text").append("<div class='hotel-rating'> <span class='text-secondary'>Rating:</span> " + response.data[rand].rating + "</div>")
-                    $("#hotel-card-" + (i + 1) + "-text").append("<div class='hotel-reviews'> <span class='text-secondary'>Number of Reviews:</span> " + response.data[rand].num_reviews + "</div>")
-                    $("#hotel-card-" + (i + 1) + "-text").append("<div class='hotel-location'> <span class='text-secondary'>Location:</span> " + response.data[rand].location_string + "</div>")
-                    $("#hotel-card-" + (i + 1) + "-img").attr("src", response.data[rand].photo.images.large.url)
-                } catch(err) {
-                    for (var i = 0; i < 3; i++) {
-                        $("#loader-" + (i + 1)).css("display", "none");
-                    }
-                    $(".modal-title").html("<h5><span class='text-danger'>Results not found</span></h5>");   
-                }
+                // generate a random number
+                var rand = values.splice(Math.random() * values.length, 1)[0];
+                $("#loader-" + (i + 1)).css("display", "none");
+                $("#hotel-card-" + (i + 1)).css("display", "block");
+                $("#hotel-card-" + (i + 1) + "-title").html("Country: <span class='text-success'>" + countryName);
+                $("#hotel-card-" + (i + 1) + "-text").append("<div class='hotel-name'> <span class='text-secondary'>Hotel Name:</span> " + response.data[rand].name + "</div>")
+                $("#hotel-card-" + (i + 1) + "-text").append("<div class='hotel-price'> <span class='text-secondary'>Price:</span> " + response.data[rand].price + "</div>")
+                $("#hotel-card-" + (i + 1) + "-text").append("<div class='hotel-rating'> <span class='text-secondary'>Rating:</span> " + response.data[rand].rating + "</div>")
+                $("#hotel-card-" + (i + 1) + "-text").append("<div class='hotel-reviews'> <span class='text-secondary'>Number of Reviews:</span> " + response.data[rand].num_reviews + "</div>")
+                $("#hotel-card-" + (i + 1) + "-text").append("<div class='hotel-location'> <span class='text-secondary'>Location:</span> " + response.data[rand].location_string + "</div>")
+                $("#hotel-card-" + (i + 1) + "-img").attr("src", response.data[rand].photo.images.large.url)
+                // try {
+                //     // generate a random number
+                //     var rand = values.splice(Math.random() * values.length, 1)[0];
+                //     $("#loader-" + (i + 1)).css("display", "none");
+                //     $("#hotel-card-" + (i + 1)).css("display", "block");
+                //     $("#hotel-card-" + (i + 1) + "-title").html("Country: <span class='text-success'>" + countryName);
+                //     $("#hotel-card-" + (i + 1) + "-text").append("<div class='hotel-name'> <span class='text-secondary'>Hotel Name:</span> " + response.data[rand].name + "</div>")
+                //     $("#hotel-card-" + (i + 1) + "-text").append("<div class='hotel-price'> <span class='text-secondary'>Price:</span> " + response.data[rand].price + "</div>")
+                //     $("#hotel-card-" + (i + 1) + "-text").append("<div class='hotel-rating'> <span class='text-secondary'>Rating:</span> " + response.data[rand].rating + "</div>")
+                //     $("#hotel-card-" + (i + 1) + "-text").append("<div class='hotel-reviews'> <span class='text-secondary'>Number of Reviews:</span> " + response.data[rand].num_reviews + "</div>")
+                //     $("#hotel-card-" + (i + 1) + "-text").append("<div class='hotel-location'> <span class='text-secondary'>Location:</span> " + response.data[rand].location_string + "</div>")
+                //     $("#hotel-card-" + (i + 1) + "-img").attr("src", response.data[rand].photo.images.large.url)
+                // } catch(err) {
+                //     for (var i = 0; i < 3; i++) {
+                //         $("#loader-" + (i + 1)).css("display", "none");
+                //     }
+                //     $(".modal-title").html("<h5><span class='text-danger'>Results not found</span></h5>");   
+                // }
             }
             console.log("success")
         });

@@ -54,7 +54,6 @@ function displayWorldCases() {
                 try {
                     var countryName = response.data[0].region.name.replace(/[^a-zA-Z ]/g, ""); // removes special character
                     $("#total-cases-country").append(`<div class="input-search" data-toggle="modal" data-target="#exampleModal" data-country="${countryName}" data-number=${total}>${countryName} <span class="text-success">${formatNumber(total)}</span></div>`);
-
                 } catch (err) {
                     // do nothing
                 }
