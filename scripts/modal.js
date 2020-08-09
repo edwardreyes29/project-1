@@ -46,15 +46,28 @@ $(document).on("click", ".input-search", function (event) {
         }
 
         $.ajax(HotelApi).done(function (response) {
-            $("#loader-1").hide();
-            $("#hotel-card-1").css("display", "block");
-            $("#hotel-card-1-title").html("Country: <span class='text-success'>" + countryName);
-            $("#hotel-card-1-text").append("<div class='hotel-name'> <span class='text-secondary'>Hotel Name:</span> " + response.data[0].name + "</div>")
-            $("#hotel-card-1-text").append("<div class='hotel-price'> <span class='text-secondary'>Price:</span> " + response.data[0].price + "</div>")
-            $("#hotel-card-1-text").append("<div class='hotel-rating'> <span class='text-secondary'>Rating:</span> " + response.data[0].rating + "</div>")
-            $("#hotel-card-1-text").append("<div class='hotel-reviews'> <span class='text-secondary'>Number of Reviews:</span> " + response.data[0].num_reviews + "</div>")
-            $("#hotel-card-1-text").append("<div class='hotel-location'> <span class='text-secondary'>Location:</span> " + response.data[0].location_string + "</div>")
-            $("#hotel-card-1-img").attr("src", response.data[0].photo.images.large.url)
+
+            for (var i = 0; i < 3; i++) {
+                $("#loader-"+(i+1)).hide();
+                $("#hotel-card-"+(i+1)).css("display", "block");
+                $("#hotel-card-"+(i+1)+"-title").html("Country: <span class='text-success'>" + countryName);
+                $("#hotel-card-"+(i+1)+"-text").append("<div class='hotel-name'> <span class='text-secondary'>Hotel Name:</span> " + response.data[i].name + "</div>")
+                $("#hotel-card-"+(i+1)+"-text").append("<div class='hotel-price'> <span class='text-secondary'>Price:</span> " + response.data[i].price + "</div>")
+                $("#hotel-card-"+(i+1)+"-text").append("<div class='hotel-rating'> <span class='text-secondary'>Rating:</span> " + response.data[i].rating + "</div>")
+                $("#hotel-card-"+(i+1)+"-text").append("<div class='hotel-reviews'> <span class='text-secondary'>Number of Reviews:</span> " + response.data[i].num_reviews + "</div>")
+                $("#hotel-card-"+(i+1)+"-text").append("<div class='hotel-location'> <span class='text-secondary'>Location:</span> " + response.data[i].location_string + "</div>")
+                $("#hotel-card-"+(i+1)+"-img").attr("src", response.data[i].photo.images.large.url)
+            }
+
+            // $("#loader-1").hide();
+            // $("#hotel-card-1").css("display", "block");
+            // $("#hotel-card-1-title").html("Country: <span class='text-success'>" + countryName);
+            // $("#hotel-card-1-text").append("<div class='hotel-name'> <span class='text-secondary'>Hotel Name:</span> " + response.data[0].name + "</div>")
+            // $("#hotel-card-1-text").append("<div class='hotel-price'> <span class='text-secondary'>Price:</span> " + response.data[0].price + "</div>")
+            // $("#hotel-card-1-text").append("<div class='hotel-rating'> <span class='text-secondary'>Rating:</span> " + response.data[0].rating + "</div>")
+            // $("#hotel-card-1-text").append("<div class='hotel-reviews'> <span class='text-secondary'>Number of Reviews:</span> " + response.data[0].num_reviews + "</div>")
+            // $("#hotel-card-1-text").append("<div class='hotel-location'> <span class='text-secondary'>Location:</span> " + response.data[0].location_string + "</div>")
+            // $("#hotel-card-1-img").attr("src", response.data[0].photo.images.large.url)
             // $("#total-cases-country").append("<span class='total-number-state'>" + response.locations[i].state + "</span> " + response.locations[i].latest.confirmed + "</br>")
             console.log("success")
         });
