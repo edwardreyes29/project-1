@@ -239,7 +239,7 @@ $("#click-usa").click(function () {
 
             async function asyncCall3() {
                 for (var i = 0; i < response.locations.length; i++) {
-                    $("#total-deaths").append(`<div class="input-search" data-toggle="modal" data-target="#exampleModal" data-state=${response.locations[i].state}>${response.locations[i].state} <span class="text-success" >${formatNumber(response.locations[i].latest.deaths)}</span></div>`)
+                    $("#total-deaths").append(`<div class="input-search" data-toggle="modal" data-target="#exampleModal" data-state=${response.locations[i].state} data-number=${response.locations[i].latest.deaths}>${response.locations[i].state} <span class="text-success" >${formatNumber(response.locations[i].latest.deaths)}</span></div>`)
 
                     // $("#total-deaths").append("<div class = 'input-search' value = "+ response.locations[i].state + "> <span class='total-number-state'>" + response.locations[i].state + "</span> " + response.locations[i].latest.deaths + "</div>")
                 }

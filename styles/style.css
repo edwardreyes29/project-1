@@ -50,6 +50,16 @@
     height: auto;
     width: auto;
 }
+
+.hotel-photo, .img-fluid {
+    display: block;
+    margin: 0 auto;
+}
+
+.modal-body {
+    text-align: center;
+}
+
 /* 
 .bubbles {
     visibility: hidden;
