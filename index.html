@@ -21,9 +21,7 @@
         </div>
     </div>
     <div class="container-fluid">
-        <div class="row">
-            <div class="col"></div>
-            <div class="col"></div>
+        <div class="row" id="search-nav">
             <div class="col-lrg-12"></div>
             <nav class="navbar navbar-light">
                 <form class="form-inline">
@@ -33,7 +31,7 @@
             </nav>
         </div>
         <div class="row">
-            <div class="col-12 col-sm-3">
+            <div class="col-12 col-sm-3 mt-3">
                 <!-- Total Confirmed Cases -->
                 <div class="card" style="height: 40rem;">
                     <div id="total-cases-div" class="card-body">
@@ -43,7 +41,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-6">
+            <div class="col-6 mt-3">
                 <!-- Map display -->
                 <div class="border border-dark" id="world-map-container">
                     <svg id="world_map_svg"></svg>
@@ -66,7 +64,7 @@
                 <button class="btn btn-primary text-light m-3" href="#" id="click-usa">USA Map</button>
                 <button class="btn btn-danger text-light m-3" href="#" id="toggle-bubbles">Toggle bubbles</button>
             </div>
-            <div class="col-12 col-sm-3">
+            <div class="col-12 col-sm-3 mt-3">
                 <!-- Total Confirmed Deaths-->
                 <div class="card" style="height: 40rem;">
                     <div class="card-body">
@@ -77,35 +75,32 @@
                 </div>
             </div>
         </div>
-    </div>
-
-    
-        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div id="carouselExampleControls" class="carousel slide mt-3" data-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
                 <div class="card-group">
                     <div class="card">
-                      <img src="https://i.redd.it/1lba9vomb5g51.png" class="card-img-top" alt="...">
+                      <img src="" class="card-img-top img-fluid" id="card-1-img" alt="...">
                       <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        <h5 class="card-title" id="card1-title"></h5>
+                        <p class="card-text" id="card1-news"></p>
+                        
                       </div>
                     </div>
                     <div class="card">
-                      <img src="https://i.redd.it/mes9niqwuzf51.jpg" class="card-img-top" alt="...">
+                      <img src="" class="card-img-top img-fluid" id="card-2-img" alt="...">
                       <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        <h5 class="card-title" id="card2-title"></h5>
+                        <p class="card-text" id="card2-news"></p>
+                    
                       </div>
                     </div>
                     <div class="card">
-                      <img src="https://i.redd.it/yycakxgfk6g51.jpg" class="card-img-top" alt="...">
+                      <img src="" class="card-img-top img-fluid" id="card-3-img" alt="...">
                       <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        <h5 class="card-title" id="card3-title"></h5>
+                        <p class="card-text" id="card3-news"></p>
+                        
                       </div>
                     </div>
                   </div>
@@ -113,58 +108,30 @@
               <div class="carousel-item">
                 <div class="card-group">
                     <div class="card">
-                      <img src="https://i.redd.it/1lba9vomb5g51.png" class="card-img-top" alt="...">
+                      <img src="" class="card-img-top img-fluid" id="card-4-img" alt="...">
                       <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        <h5 class="card-title" id="card4-title"></h5>
+                        <p class="card-text" id="card4-news"></p>
+                        
                       </div>
                     </div>
                     <div class="card">
-                      <img src="https://i.redd.it/mes9niqwuzf51.jpg" class="card-img-top" alt="...">
+                      <img src="" class="card-img-top img-fluid"  id="card-5-img" alt="...">
                       <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        <h5 class="card-title" id="card5-title"></h5>
+                        <p class="card-text" id="card5-news"></p>
+                        
                       </div>
                     </div>
                     <div class="card">
-                      <img src="https://i.redd.it/yycakxgfk6g51.jpg" class="card-img-top" alt="...">
+                      <img src="" class="card-img-top img-fluid" id="card-6-img" alt="...">
                       <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                        <h5 class="card-title" id="card6-title"></h5>
+                        <p class="card-text" id="card6-news"></p>
+                        
                       </div>
                     </div>
                   </div>              
-              </div>
-              <div class="carousel-item">
-                <div class="card-group">
-                    <div class="card">
-                      <img src="https://i.redd.it/1lba9vomb5g51.png" class="card-img-top" alt="...">
-                      <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                      </div>
-                    </div>
-                    <div class="card">
-                      <img src="https://i.redd.it/mes9niqwuzf51.jpg" class="card-img-top" alt="...">
-                      <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                      </div>
-                    </div>
-                    <div class="card">
-                      <img src="https://i.redd.it/yycakxgfk6g51.jpg" class="card-img-top" alt="...">
-                      <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-                      </div>
-                    </div>
-                  </div>
               </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -177,6 +144,8 @@
             </a>
           </div>
         </div>
+    </div>
+
 
     <!-- Button trigger modal -->
     
@@ -250,6 +219,7 @@
         crossorigin="anonymous"></script>
     <script src="scripts/worldmap.js"></script>
     <script src="scripts/usmap.js"></script>
+    <script src="scripts/news.js"></script>
     <!-- <script src="scripts/modal.js"></script> -->
 </body>
 
