@@ -91,8 +91,10 @@ function displayWorldDeaths() {
             $.ajax(reports).done(function (response) {
                 var countryName;
                 var total = 0;
+                var confirmed = 0;
                 for (var j = 0; j < response.data.length; j++) {
                     total += response.data[j].deaths;
+
                     // console.log(response.data[j].deaths)
                 }
                 try {
@@ -183,7 +185,8 @@ function displayUSACases() {
             var countryName = response.locations[i].country;
             var stateName = response.locations[i].state;
             var numDeaths = response.locations[i].latest.deaths
-            $("#total-deaths").append(`<div class="input-search" data-toggle="modal" data-target="#exampleModal" data-state="${stateName}" data-country="${countryName}" data-number=${numDeaths}>${stateName} <span class="text-success" >${formatNumber(numDeaths)}</span></div>`);
+            var numCases = response.locations[i].latest.confirmed;
+            $("#total-deaths").append(`<div class="input-search" data-toggle="modal" data-target="#exampleModal" data-state="${stateName}" data-country="${countryName}" data-number=${numCases}>${stateName} <span class="text-success" >${formatNumber(numDeaths)}</span></div>`);
         }
     });
 }
