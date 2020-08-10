@@ -21,8 +21,8 @@ $(document).on("click", ".input-search", function (event) {
 
     // Data Number for Risk Assessment for Deaths
     var dataNumber = $(this).data("number");
-    var dataCases = $(this).data("cases");
-
+    //var dataCases = $(this).data("cases")
+    
 
    
     //append Country Name to Modal
@@ -72,17 +72,26 @@ $(document).on("click", ".input-search", function (event) {
                 $("#hotel-card-" + (i + 1) + "-text").append("<div class='hotel-reviews'> <span class='text-secondary'>Number of Reviews:</span> " + response.data[rand].num_reviews + "</div>")
                 $("#hotel-card-" + (i + 1) + "-text").append("<div class='hotel-location'> <span class='text-secondary'>Location:</span> " + response.data[rand].location_string + "</div>")
 
-                if (dataNumber > 15000 || dataCases > 250000) {
+                if (dataNumber > 400000)  {
+                    dataNumber = 20000;
+                } else if (dataNumber > 120000) {
+                    dataNumber = 10000;
+                } else {
+                    dataNumber = 4000;
+                }
+                   
+                if (dataNumber > 15000 ) {
                     $("#hotel-card-" + (i + 1) + "-text").append("<div class='recommendation bg-danger text-light'><span class=badge badge-pill badge-danger'>High Risk Area</span></div>")
-
-                } else if (dataNumber > 5000 || dataCases > 125000) {
+                } else if (dataNumber > 5000) {
                     $("#hotel-card-" + (i + 1) + "-text").append("<div class='recommendation bg-warning'><span class=badge badge-pill badge-warning'>Moderate Risk Area</span></div>")
                 } else {
                     $("#hotel-card-" + (i + 1) + "-text").append("<div class='recommendation text-light'><span class='badge badge-pill badge-success'>Low Risk Area</span>Low Risk Area'</div>")
-                } 
+                }
                 $("#hotel-card-" + (i + 1) + "-img").attr("src", response.data[rand].photo.images.large.url)
 
-               
+                
+
+
                 // try {
                 //     // generate a random number
                 //     var rand = values.splice(Math.random() * values.length, 1)[0];
