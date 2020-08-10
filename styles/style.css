@@ -99,3 +99,22 @@
     display: none;
 }
 
+
+
+@media (max-width: 991px) {
+  [class*= row] {
+    width: 100%;
+    }
+
+}
+
+
+
+  @media (min-width: 375px) and (max-width: 767px) {
+    [class*=col-6] {
+      display: none;
+    }
+  }
+
+  
+
