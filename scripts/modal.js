@@ -19,18 +19,16 @@ $(document).on("click", ".input-search", function (event) {
     // Create the query
     var query = countryName + " " + stateName;
 
-    // Data Number for Risk Assessment
+    // Data Number for Risk Assessment for Deaths
     var dataNumber = $(this).data("number");
+    var dataCases = $(this).data("cases");
 
-    
 
-    //append Country Name
+   
+    //append Country Name to Modal
     $(".modal-title").html("Hotel Listings for " + query)
 
 
-
-
-    
     var locationAPI = {
         "async": true,
         "crossDomain": true,
@@ -59,7 +57,6 @@ $(document).on("click", ".input-search", function (event) {
 
         $.ajax(HotelApi).done(function (response) {
             // used to not pick the same number twice
-            console.log(response.data.length)
             var values = [];
             for (var i = 1; i <= response.data.length; ++i){
                 values.push(i);
@@ -75,17 +72,17 @@ $(document).on("click", ".input-search", function (event) {
                 $("#hotel-card-" + (i + 1) + "-text").append("<div class='hotel-reviews'> <span class='text-secondary'>Number of Reviews:</span> " + response.data[rand].num_reviews + "</div>")
                 $("#hotel-card-" + (i + 1) + "-text").append("<div class='hotel-location'> <span class='text-secondary'>Location:</span> " + response.data[rand].location_string + "</div>")
 
-                if (dataNumber > 15000) {
-                    $("#hotel-card-" + (i + 1) + "-text").append("<div class='recommendation bg-danger text-light'><span class=badge badge-pill badge-danger>High Risk Area</span></div>")
-                } else if (dataNumber > 5000) {
-                    $("#hotel-card-" + (i + 1) + "-text").append("<div class='recommendation bg-warning'><span class=badge badge-pill badge-warning>Moderate Risk Area</span></div>")
+                if (dataNumber > 15000 || dataCases > 250000) {
+                    $("#hotel-card-" + (i + 1) + "-text").append("<div class='recommendation bg-danger text-light'><span class=badge badge-pill badge-danger'>High Risk Area</span></div>")
+
+                } else if (dataNumber > 5000 || dataCases > 125000) {
+                    $("#hotel-card-" + (i + 1) + "-text").append("<div class='recommendation bg-warning'><span class=badge badge-pill badge-warning'>Moderate Risk Area</span></div>")
                 } else {
                     $("#hotel-card-" + (i + 1) + "-text").append("<div class='recommendation text-light'><span class='badge badge-pill badge-success'>Low Risk Area</span>Low Risk Area'</div>")
-                    }
+                } 
                 $("#hotel-card-" + (i + 1) + "-img").attr("src", response.data[rand].photo.images.large.url)
 
-                
-
+               
                 // try {
                 //     // generate a random number
                 //     var rand = values.splice(Math.random() * values.length, 1)[0];

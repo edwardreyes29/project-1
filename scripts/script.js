@@ -53,7 +53,7 @@ function displayWorldCases() {
                 }
                 try {
                     var countryName = response.data[0].region.name.replace(/[^a-zA-Z ]/g, ""); // removes special character
-                    $("#total-cases-country").append(`<div class="input-search" data-toggle="modal" data-target="#exampleModal" data-country="${countryName}" data-number=${total}>${countryName} <span class="text-success">${formatNumber(total)}</span></div>`);
+                    $("#total-cases-country").append(`<div class="input-search" data-toggle="modal" data-target="#exampleModal" data-country="${countryName}" data-cases=${total}>${countryName} <span class="text-success">${formatNumber(total)}</span></div>`);
                 } catch (err) {
                     // do nothing
                 }
@@ -171,8 +171,8 @@ function displayUSACases() {
         for (var i = 0; i < response.locations.length; i++) {
             var countryName = response.locations[i].country;
             var stateName = response.locations[i].state;
-            var numCases = response.locations[i].latest.deaths
-            $("#total-cases-country").append(`<div class="input-search" data-toggle="modal" data-target="#exampleModal" data-state="${stateName}" data-country="${countryName}" data-number=${numCases}>${stateName} <span class="text-success">${formatNumber(numCases)}</span></div>`);
+            var numCases = response.locations[i].latest.confirmed
+            $("#total-cases-country").append(`<div class="input-search" data-toggle="modal" data-target="#exampleModal" data-state="${stateName}" data-country="${countryName}" data-cases=${numCases}>${stateName} <span class="text-success">${formatNumber(numCases)}</span></div>`);
         }
     });
 
