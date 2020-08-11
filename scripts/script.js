@@ -197,7 +197,7 @@ function displayUSACases() {
 $("#click-usa").on("click", function () {
     event.preventDefault();
     $("#world-map-container").css("display", 'none');
-    $("#toggle-bubbles").css("display", 'none');
+    $("#toggle-bubbles").addClass("disabled");
     $("#us-map-container").css("display", 'block');
 });
 
@@ -206,20 +206,25 @@ $("#click-world").on("click", function () {
     event.preventDefault();
     $("#us-map-container").css("display", 'none');
     $("#world-map-container").css("display", 'block');
-    $("#toggle-bubbles").css("display", 'block');
+    $("#toggle-bubbles").removeClass("disabled");
 });
 
 // toggle bubble display 
 var clicked = 0;
 $("#toggle-bubbles").on("click", function () {
     event.preventDefault();
-    if (clicked === 0) {
-        $(".bubbles").css("visibility", "hidden");
-        clicked = 1;
+    if ($("#toggle-bubbles").hasClass("disabled")) {
+        // do nothing
     } else {
-        $(".bubbles").css("visibility", "visible");
-        clicked = 0;
+        if (clicked === 0) {
+            $(".bubbles").css("visibility", "hidden");
+            clicked = 1;
+        } else {
+            $(".bubbles").css("visibility", "visible");
+            clicked = 0;
+        }
     }
+   
 })
 
 // Click function to display World cases and World Deaths
