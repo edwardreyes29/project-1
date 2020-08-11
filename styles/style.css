@@ -3,12 +3,6 @@
   overflow: auto;
   height: 90%;
 }
-/* #total-cases-div {
-    background: blue;
-    width: 250px;
-    height: 300px;
-    border: 1px solid black;
-} */
 
 .total-number {
   color: red;
@@ -60,43 +54,16 @@
 }
 
 
-
-/* 
-.bubbles {
-    visibility: hidden;
-} */
-
 /* loader */
 .loader {
-  width: 90px;
-  height: 90px;
-  -webkit-animation: spin 3s linear infinite; /* Safari */
-  animation: spin 2s linear infinite;
+  width: 80px;
+  height: 80px;
   margin-left:auto;
   margin-right:auto;
   margin-top: 5%;
   margin-bottom: 5%;
   display: block;
   
-}
-
-/* Safari */
-@-webkit-keyframes spin {
-  0% {
-    -webkit-transform: rotate(0deg);
-  }
-  100% {
-    -webkit-transform: rotate(360deg);
-  }
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }
 
 #hotel-card-1 {
