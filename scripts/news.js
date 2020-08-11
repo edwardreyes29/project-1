@@ -56,7 +56,7 @@ $.ajax(newsAPI).done(function (response) {
 			}
 			$("#news-card-group-"+i)
 				.append(`<div class="card">
-						<a href=${link}>
+						<a href=${link} target="_blank">
 							<img src="${media}" class="card-img-top img-fluid h-100" id="card-${j + 1}-img" alt="..." style="max-height:150px;">
 						</a>
 						<div class="card-body" id="news-card-body">

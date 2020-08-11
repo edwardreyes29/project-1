@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/css/bootstrap.min.css"
         integrity="sha384-VCmXjywReHh4PwowAiWNagnWcLhlEJLA5buUprzK8rxFgeH0kww/aWY76TfkUoSX" crossorigin="anonymous">
     <title>Secure Travel App</title>
+    <link rel="icon" type="image/svg" href="assets/virus.svg">
     <link rel="stylesheet" href="styles/style.css">
     </style>
 </head>
@@ -112,7 +113,7 @@
                             <p class="card-text" id="hotel-card-1-text">Some quick example text to build on the card
                                 title and make up the bulk
                                 of the card's content.</p>
-                            <a href="https://www.tripadvisor.com/" class="btn btn-primary hotel-buttons">Book Now</a>
+                            <a href="https://www.tripadvisor.com/" target="_blank" class="btn btn-primary hotel-buttons">Book Now</a>
                         </div>
                     </div>
                     <div class="card w-100" id="hotel-card-2">
@@ -122,7 +123,7 @@
                             <p class="card-text" id="hotel-card-2-text">Some quick example text to build on the card
                                 title and make up the bulk
                                 of the card's content.</p>
-                            <a href="https://www.tripadvisor.com/" class="btn btn-primary hotel-buttons">Book Now</a>
+                            <a href="https://www.tripadvisor.com/" target="_blank" class="btn btn-primary hotel-buttons">Book Now</a>
                         </div>
                     </div>
                     <div class="card w-100" id="hotel-card-3">
@@ -132,7 +133,7 @@
                             <p class="card-text" id="hotel-card-3-text">Some quick example text to build on the card
                                 title and make up the bulk
                                 of the card's content.</p>
-                            <a href="https://www.tripadvisor.com/" class="btn btn-primary hotel-buttons">Book Now</a>
+                            <a href="https://www.tripadvisor.com/" target="_blank" class="btn btn-primary hotel-buttons">Book Now</a>
                         </div>
                     </div>
                 </div>
@@ -151,17 +152,19 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.1/js/bootstrap.min.js"
         integrity="sha384-XEerZL0cuoUbHE4nZReLT7nx9gQrQreJekYhJD9WNWhH8nEW+0c5qq7aIo2Wl30J"
         crossorigin="anonymous"></script>
-    <script src="scripts/script.js"></script>
     <script src="https://d3js.org/d3.v4.js"></script>
     <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
     <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/3.0.2/topojson.min.js"
         integrity="sha512-4UKI/XKm3xrvJ6pZS5oTRvIQGIzZFoXR71rRBb1y2N+PbwAsKa5tPl2J6WvbEvwN3TxQCm8hMzsl/pO+82iRlg=="
         crossorigin="anonymous"></script>
+    <script src="scripts/script.js"></script>
     <script src="scripts/worldmap.js"></script>
     <script src="scripts/usmap.js"></script>
     <script src="scripts/news.js"></script>
     <!-- <script src="scripts/modal.js"></script> -->
+
+    <!-- To make carousel draggable -->
     <script src='//cdnjs.cloudflare.com/ajax/libs/jquery.touchswipe/1.6.4/jquery.touchSwipe.min.js'></script>
     <script type="text/javascript">
         jQuery(".carousel").swipe({

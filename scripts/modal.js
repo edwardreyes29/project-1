@@ -6,6 +6,7 @@
 $(document).on("click", ".input-search", function (event) {
     var apiKey = "d60b77f798msh32257c07ec0e08ap1cb378jsn227b3dea201a";
     apiKey = "73403c6c67msha0632541172766bp194ccejsn820ec377a86a";
+    apiKey = "2ca619fcd3msh02f5effc7ebeacap17db6fjsn9249e6ca621d";
     // Empty Modal in case api is still loading
     // $(".modal-body").empty();
     var countryName = $(this).data("country");
@@ -59,7 +60,7 @@ $(document).on("click", ".input-search", function (event) {
             for (var i = 0; i < response.data.length; ++i){
                 values.push(i);
             }
-            $("#loader").hide();
+            $(".loader").hide();
             for (var i = 0; i < 3; i++) {
                 // generate a random number
                 var rand = values.splice(Math.random() * values.length, 1)[0];
@@ -81,7 +82,7 @@ $(document).on("click", ".input-search", function (event) {
             console.log("success")
         });
     }).fail(function() {
-        $("#loader").hide();
+        $(".loader").hide();
         $(".modal-title").html("<h5><span class='text-danger'>API error</span></h5>");   
     })
 })
@@ -98,7 +99,7 @@ $("#modal-close").on("click", function (event) {
         $("#hotel-card-"+(i+1)+"-text").empty()
         $("#hotel-card-"+(i+1)+"-img").attr("src", "")
     }
-    $("#loader").show();
+    $(".loader").show();
 });
 
 $("#hotel-modal-close").on("click", function(event) {
@@ -113,5 +114,5 @@ $("#hotel-modal-close").on("click", function(event) {
         $("#hotel-card-"+(i+1)+"-text").empty()
         $("#hotel-card-"+(i+1)+"-img").attr("src", "")
     }
-    $("#loader").show();
+    $(".loader").show();
 })
