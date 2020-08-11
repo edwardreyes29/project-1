@@ -170,22 +170,28 @@ function displayUSACases() {
     }
     //Ajax call for US Cases
     $.ajax(statesAPI).done(function (response) {
+        var totalConfirmed = 0;
         for (var i = 0; i < response.locations.length; i++) {
             var countryName = response.locations[i].country;
             var stateName = response.locations[i].state;
             var numCases = response.locations[i].latest.confirmed
+            totalConfirmed += numCases;
+            $("#total-world-confirmed").html("Total Confirmed <br><span class='total-number'>" + formatNumber(totalConfirmed));
             $("#total-cases-country").append(`<div class="input-search" data-toggle="modal" data-target="#exampleModal" data-state="${stateName}" data-country="${countryName}" data-number=${numCases}>${stateName} <span class="text-success">${formatNumber(numCases)}</span></div>`);
         }
     });
 
     //Ajax call for US Deaths
     $.ajax(statesAPI).done(function (response) {
+        var totalDeaths = 0
         for (var i = 0; i < response.locations.length; i++) {
             // console.log(response.locations[i].state);
             var countryName = response.locations[i].country;
             var stateName = response.locations[i].state;
             var numDeaths = response.locations[i].latest.deaths
             var numCases = response.locations[i].latest.confirmed;
+            totalDeaths += numDeaths;
+            $("#total-world-deaths").html("Total Deaths <br><span class='total-number'>" + formatNumber(totalDeaths));
             $("#total-deaths").append(`<div class="input-search" data-toggle="modal" data-target="#exampleModal" data-state="${stateName}" data-country="${countryName}" data-number=${numCases}>${stateName} <span class="text-success" >${formatNumber(numDeaths)}</span></div>`);
         }
     });
@@ -224,17 +230,18 @@ $("#toggle-bubbles").on("click", function () {
             clicked = 0;
         }
     }
-   
 })
 
 // Click function to display World cases and World Deaths
-$(".world-map").click(function () {
+$("#click-world").click(function () {
     $("#total-cases-country").empty();
     $("#total-deaths").empty();
     // Display world cases
     displayWorldCases();
     // Display world deaths
     displayWorldDeaths();
+    displayWorldTotalDeaths()
+    displayTotalWorldCases()
 });
 
 // This function formats numbers with commas
