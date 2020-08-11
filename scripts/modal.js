@@ -23,8 +23,6 @@ $(document).on("click", ".input-search", function (event) {
     var dataNumber = $(this).data("number");
     //var dataCases = $(this).data("cases")
     
-
-   
     //append Country Name to Modal
     $(".modal-title").html("Hotel Listings for " + query)
 
@@ -58,7 +56,7 @@ $(document).on("click", ".input-search", function (event) {
         $.ajax(HotelApi).done(function (response) {
             // used to not pick the same number twice
             var values = [];
-            for (var i = 1; i <= response.data.length; ++i){
+            for (var i = 0; i < response.data.length; ++i){
                 values.push(i);
             }
             $("#loader").hide();
