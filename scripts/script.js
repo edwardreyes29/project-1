@@ -228,7 +228,7 @@ $("#toggle-bubbles").on("click", function () {
 })
 
 // Click function to display World cases and World Deaths
-$(".world-map").click(function () {
+$("#click-world").click(function () {
     $("#total-cases-country").empty();
     $("#total-deaths").empty();
     // Display world cases
