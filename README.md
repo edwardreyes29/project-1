@@ -15,30 +15,30 @@ risk recommendations and provides the user with travel accommodation options.
 * Book now feature that links the user to Trip Advisor
 
 ## Site information Display
-* Total confirmed deaths
-* Total confirmed cases (based on API information provided)
-* Highlight countries currently blocking travel
-* We created our own parameters of what constitutes being a safe location to travel to
-* Hotel information displayed at user’s selected destination
+  * Total confirmed deaths
+  * Total confirmed cases (based on API information provided)
+  * Highlight countries currently blocking travel
+  * We created our own parameters of what constitutes being a safe location to travel to
+  * Hotel information displayed at user’s selected destination
 
 ## Process
   ### Front End Development
-    * We used HTML, CSS, JavaScript and Bootstrap to build out the design layout.
-    * Added a carousel from Bootstrap to have running updates of Covid-19 news.
-    * Added media queries to add some functionality when a user views the site on various sized devices. 
-    * Added scroll buttons to country and U.S, state listings so the viewer can find their selected locations with ease.
-    * Styled the background color, added Search button and bar.
+  * We used HTML, CSS, JavaScript and Bootstrap to build out the design layout.
+  * Added a carousel from Bootstrap to have running updates of Covid-19 news.
+  * Added media queries to add some functionality when a user views the site on various sized devices. 
+  * Added scroll buttons to country and U.S, state listings so the viewer can find their selected locations with ease.
+  * Styled the background color, added Search button and bar.
     
   ### Back End Development
-    * Within the calls we appended the data to those columns 
-    * Added click functions to switch back and forth between the USA and World maps to be able to toggle between the two which will display the results.
-    * Added a click function (modal) that triggers the modal which displays hotel information to the user at their desired location.
-    * Appended the hotel info (name price etc.) within the modal for locations in the US and the World.
-    * Used API calls to:
-      * Write the total amount of cases by country
-      * Highlight total death by country
-      * Track US states confirmed cases
-      * Illustrate US Death confirmed cases
+  * Within the calls we appended the data to those columns 
+  * Added click functions to switch back and forth between the USA and World maps to be able to toggle between the two which will display the results.
+  * Added a click function (modal) that triggers the modal which displays hotel information to the user at their desired location.
+  * Appended the hotel info (name price etc.) within the modal for locations in the US and the World.
+  * Used API calls to:
+    * Write the total amount of cases by country
+    * Highlight total death by country
+    * Track US states confirmed cases
+    * Illustrate US Death confirmed cases
 
 ### Technologies used:  
   HTML, CSS, Bootstrap, JavaScript, D3.js, jQuery
@@ -64,8 +64,9 @@ risk recommendations and provides the user with travel accommodation options.
 
 ## LINK TO DEPLOYED APPLICATION / GITHUB
 
-https://edwardreyes29.github.io/project-1/
-https://github.com/edwardreyes29/project-1
+[GitHub Pages](https://edwardreyes29.github.io/project-1/)
+
+[GitHub](https://github.com/edwardreyes29/project-1)
 
 ## AUTHORS AND ACKNOWLEDGEMENT
 
