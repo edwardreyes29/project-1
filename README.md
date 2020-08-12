@@ -43,17 +43,14 @@ risk recommendations and provides the user with travel accommodation options.
 ### Technologies used:  
   HTML, CSS, Bootstrap, JavaScript, D3.js, jQuery
 ### API's used
-  COVID-19 Statistics
-    By Axisbits
-    https://english.api.rakuten.net/axisbits-axisbits-default/api/covid-19-statistics
-  Coronavirus-us-api
-    By Spiderpig86
-    https://rapidapi.com/Spiderpig86/api/coronavirus-us-api
-  TripAdvisor
-    By apidojo
-    https://english.api.rakuten.net/apidojo/api/tripadvisor1
-  COVID-19 News
-      By kotartemiyhttps://rapidapi.com/kotartemiy/api/covid-19-news
+COVID-19 Statistics By Axisbits [Link](https://english.api.rakuten.net/axisbits-axisbits-default/api/covid-19-statistics)
+
+Coronavirus-us-api By Spiderpig86 [Link](https://rapidapi.com/Spiderpig86/api/coronavirus-us-api)
+
+TripAdvisor API By apidojo [Link](https://english.api.rakuten.net/apidojo/api/tripadvisor1)
+    
+COVID-19 News By kotartemiy [Link](https://rapidapi.com/kotartemiy/api/covid-19-news)
+
 ## CHALLENGES
   * Page load time when pulling data from API
   * Limited API calls using the TripAdvisor API
@@ -70,9 +67,6 @@ risk recommendations and provides the user with travel accommodation options.
 
 ## AUTHORS AND ACKNOWLEDGEMENT
 
-  Front End:  Anissa Shanks
-              Anthony Figueroa
-              Darren Huang
+Front End: Anissa Shanks, Anthony Figueroa, Darren Huang
 
-  Back End:   Edward Reyes
-              Nick Guimarais
+Back End: Edward Reyes, Nick Guimarais
